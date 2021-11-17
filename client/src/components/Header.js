@@ -9,7 +9,7 @@ const Header = () => {
           <Navbar.Brand href='/'>InkaShop</Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='ml-auto' style={{marginLeft: '60rem'}}>
+            <Nav className='ms-auto'>
               <Nav.Link href='/cart'>
                 <i className='fas fa-shopping-cart'></i> Cart
               </Nav.Link>
