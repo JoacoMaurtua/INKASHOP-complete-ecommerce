@@ -20,11 +20,13 @@ app.get('/api/products/:id',(req,res)=>{
   res.json(product);
 })
 
-
+//Conexion con la base de datos:
+const connectDB = require('./config/mongodb.config');
+connectDB(); //-->Llama a la funcion asincrona
 
 
 
 
 app.listen(PORT,()=>{
-  console.log(`1: Servidor corriendo en el puerto ${PORT}`)
+  console.log(`1: Servidor corriendo en ${process.env.NODE_ENV} en el puerto ${PORT}`)
 });
