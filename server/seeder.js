@@ -52,6 +52,7 @@ const destroyData = async() =>{
   }
 };
 
+//si se apreta el comando -d que se desruya la data
 if(process.argv[2] === '-d'){
   destroyData()
 }else{
