@@ -6,7 +6,7 @@ export const listProducts = () => async(dispatch) =>{
   try{
     dispatch({type: PRODUCT_LIST_REQUEST}) //dispatch() envia la accion al store
 
-    const {data} = await axios.get('/api/products/list'); //se extrae los datos de la API productos
+    const {data} = await axios.get('/api/products'); //se extrae los datos de la API productos
 
     dispatch({
       type: PRODUCT_LIST_SUCCESS, //tipo de accion a realizar
