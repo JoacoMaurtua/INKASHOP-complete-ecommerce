@@ -19,7 +19,7 @@ const Homescreen = () => {
 
   const dispatch = useDispatch(); //devuelve una referencia al dispatch enviado por la accion al store || envia una acción específica al reducer
 
-  const productList = useSelector(state => state.productList); //extrae datos del estado (reducer) del store, en este caso la propiedad productList
+  const productList = useSelector(state => state.productList); //extrae datos del estado (reduc) del store, en este caso la propiedad productList
   const { loading, error, products } = productList; //extrae las propiedades del objeto que devuelve el productReducer
 
   useEffect(() => {

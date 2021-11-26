@@ -21,5 +21,11 @@ export default store;
 
 
 
+/* 
+Store -> Un estado globalizado
+Action -> Lo que quieres hacer, por ejemplo: clic en un evento
+Reducer -> Describe como tu acción transfiere el estado al siguiente estado. Comprueba qué acción ha tenido lugar y en base a la acción actualiza el store.
+Dispatch -> Manera de ejecutar la acción. Despachar la acción al reductor. Entonces el reducer comprobará qué hacer y el store se actualiza.
 
+*/
 
