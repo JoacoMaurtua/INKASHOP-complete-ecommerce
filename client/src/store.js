@@ -1,4 +1,4 @@
-import {createStore, combineReducers, applyMiddleware} from 'redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux'; //crea el store, agrupa todos los reducers, middleware
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension'; //metodo para que las redux dev tools del browser se apliquen al proyecto
 import {productListReducer} from './reducers/productReducers';
@@ -9,10 +9,10 @@ const reducer = combineReducers({
 
 const initialState = {}; //estado inicial de la aplicacion(recibira los datos de la API)
 
-const middleware = [thunk] // middleware para hacer llamadas asincronas
+const middleware = [thunk] // middleware para hacer llamadas asincronas en el mundo de redux
 
 const store = createStore(reducer,initialState,composeWithDevTools( //Creamos la unica store de la aplicacion
-  applyMiddleware(...middleware) //accedemos a la funcionalidad del middleware thunk
+  applyMiddleware(...middleware) //accedemos a la funcionalidad del middleware thunk, store es el que gestiona todo
 ));
 
 export default store;
