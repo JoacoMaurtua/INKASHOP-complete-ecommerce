@@ -2,6 +2,7 @@ import {PRODUCT_LIST_REQUEST,PRODUCT_LIST_SUCCESS,PRODUCT_LIST_FAIL} from '../co
 import axios from 'axios';
 
 //Funcion asincrona creadora de acciones
+//Hace lo mismo que el useEffect con el setState!!!!
 export const listProducts = () => async(dispatch) =>{
   try{
     dispatch({type: PRODUCT_LIST_REQUEST}) //dispatch() envia la accion al store
@@ -16,7 +17,7 @@ export const listProducts = () => async(dispatch) =>{
   }catch(error){
     dispatch({
       type:PRODUCT_LIST_FAIL,
-      payload: error.response && error.response.data.message? //mismo error que apareceria en mongoDB atlas
+      payload: error.response && error.response.data.message? //mismo error que apareceria en mongoDB atlas || error genérico
       error.response.data.message
       :error.message
     })

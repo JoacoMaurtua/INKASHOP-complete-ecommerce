@@ -7,6 +7,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//similar al context API, y no necesariamente en el index
 ReactDOM.render(
   <Provider store={store}>
     <App />

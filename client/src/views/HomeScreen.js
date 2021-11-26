@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'; //dispatch || call action, seleccionar partes del state
 import { Row, Col } from 'react-bootstrap';
 import Product from '../components/Product';
 import { listProducts } from '../actions/productActions'; //traemos las acciones de products
@@ -17,9 +17,9 @@ const Homescreen = () => {
   },[]) 
   console.log('products: ',products);*/
 
-  const dispatch = useDispatch(); //devuelve una referencia al dispatch enviado por la accion al store
+  const dispatch = useDispatch(); //devuelve una referencia al dispatch enviado por la accion al store || envia una acción específica al reducer
 
-  const productList = useSelector(state => state.productList); //extrae datos del estado del store, en este caso la propiedad productList
+  const productList = useSelector(state => state.productList); //extrae datos del estado (reducer) del store, en este caso la propiedad productList
   const { loading, error, products } = productList; //extrae las propiedades del objeto que devuelve el productReducer
 
   useEffect(() => {
