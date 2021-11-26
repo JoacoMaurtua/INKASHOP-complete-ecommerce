@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import Product from '../components/Product';
 import { listProducts } from '../actions/productActions'; //traemos las acciones de products
+import Message from '../components/Message';
+import Loader from '../components/Loader';
+
 //import axios from 'axios';
 
 const Homescreen = () => {
@@ -32,9 +35,9 @@ const Homescreen = () => {
     <>
       <h1 style={{ margin: '2rem 0' }}>Latest Products</h1>
       {loading ? ( //Si la data esta cargando(loading:true en el reducer)
-        <h2>Loading...</h2>
+        <Loader />
       ) : error ? (
-        <h3>{error}</h3> //Si hubo un error se activa la accion PRODUCT_LIST_FAIL
+        <Message variant='danger'>{error}</Message> //Si hubo un error se activa la accion PRODUCT_LIST_FAIL
       ) : (
         <Row>
           {products.map((product, index) => (
