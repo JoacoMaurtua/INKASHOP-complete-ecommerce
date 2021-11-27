@@ -1,25 +1,32 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
-import { Form, Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
+import { Link, useParams, useHistory } from 'react-router-dom';
+import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap';
 import Rating from '../components/Rating';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { listDetailsProduct } from '../actions/productActions';
 
 const Productscreen = () => {
+
+  const [qty,setQty] = useState(0); //cantidad en el stock
+
   const { id } = useParams();
+
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
-  const [qty, setQty] = useState(0);
-  const 
   const productDetailList = useSelector((state) => state.productDetails); //extrae datos del estado del store, en este caso la propiedad productList
   const { loading, error, product } = productDetailList;
 
   useEffect(() => {
     dispatch(listDetailsProduct(id));
   }, [dispatch, id]);
+
+  const addToCart = () =>{
+    history.push(`/cart/${id}?qty=${qty}`)
+  }
 
 
   return (
@@ -98,6 +105,7 @@ const Productscreen = () => {
 
                   <ListGroup.Item>
                     <Button
+                      onClick = {addToCart}
                       className="btn-block"
                       type="button"
                       style={{ width: '100%' }}
