@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
+import { Form, Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 import Rating from '../components/Rating';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
@@ -12,6 +12,8 @@ const Productscreen = () => {
 
   const dispatch = useDispatch();
 
+  const [qty, setQty] = useState(0);
+  const 
   const productDetailList = useSelector((state) => state.productDetails); //extrae datos del estado del store, en este caso la propiedad productList
   const { loading, error, product } = productDetailList;
 
@@ -74,6 +76,26 @@ const Productscreen = () => {
                       </Col>
                     </Row>
                   </ListGroup.Item>
+
+                  {product.countInStock > 0 && (
+                    <ListGroup.Item>
+                       <Row>
+                         <Col>Qty</Col>
+                         <Col>
+                          <Form.Select as="select" value={qty} onChange={(e) => setQty(e.target.value)}>
+                            {
+                                [...Array(product.countInStock).keys()].map( x => (
+                                  <option key={x+1} value={x+1}>
+                                    {x+1}
+                                  </option>
+                                ))                      
+                            }
+                          </Form.Select>
+                         </Col>
+                       </Row>
+                    </ListGroup.Item>
+                  )}
+
                   <ListGroup.Item>
                     <Button
                       className="btn-block"
