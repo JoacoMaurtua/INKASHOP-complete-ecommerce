@@ -9,7 +9,7 @@ import { listDetailsProduct } from '../actions/productActions';
 
 const Productscreen = () => {
 
-  const [qty,setQty] = useState(0); //cantidad en el stock
+  const [qty,setQty] = useState(1); //cantidad en el stock //quizas sea 1
 
   const { id } = useParams();
 
@@ -89,7 +89,7 @@ const Productscreen = () => {
                         <Row>
                           <Col>Qty</Col>
                           <Col>
-                            <Form.Select as='select' value={qty} onChange={(e)=>
+                            <Form.Select value={qty} onChange={(e)=>
                             setQty(e.target.value)}> {/* cambia el estado*/}
                             {
                            
