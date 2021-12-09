@@ -9,7 +9,18 @@ const Cartscreen = () => {
   const {id} = useParams();
 
   const location = useLocation();
-  const qty = location.search;
+  const qty = (location.search) ? Number(location.search.split('=')[1]) : 1;
+
+  const dispatch = useDispatch();
+  const cart = useSelector(state => state.cart);
+  const { cartItems } = cart
+
+  console.log(cartItems);
+  useEffect(() => {
+    if(id){
+      dispatch(addCart(id, qty));
+    }
+  }, [id]);
   
   console.log(qty);
   //useEffect()
