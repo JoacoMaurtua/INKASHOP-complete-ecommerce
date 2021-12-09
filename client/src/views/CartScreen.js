@@ -20,7 +20,7 @@ const Cartscreen = () => {
     if(id){
       dispatch(addCart(id, qty));
     }
-  }, [id]);
+  }, [id, qty, dispatch]);
   
   console.log(qty);
   //useEffect()
