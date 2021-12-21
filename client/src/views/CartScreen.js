@@ -36,6 +36,10 @@ const Cartscreen = () => {
 
   const removeFromHandler = (id) =>{
     console.log('remove');
+  };
+
+  const checkoutHandler = () =>{
+    console.log('checkout') //Ruta para loguearse
   }
 
   return (
@@ -60,7 +64,7 @@ const Cartscreen = () => {
                   <Col md={2}>{item.price}</Col>
                   <Col md={2}>
                     <Form.Select
-                      value={qty}
+                      value={item.qty}
                       onChange={(e) =>
                         dispatch(addCart(item.product, Number(e.target.value)))
                       }
@@ -90,11 +94,25 @@ const Cartscreen = () => {
         )}
       </Col>
 
-      <Col md={2}></Col>
+      <Col md={4}>
+        <Card>
+          <ListGroup variant="flush">
+              <ListGroup.Item>
+                  <h2>Subtotal: ({cartItems.reduce((acc,item)=>acc + item.qty, 0)}) items</h2>
+                  ${cartItems.reduce((acc,item) => acc + item.qty * item.price, 0).toFixed(2)}
+              </ListGroup.Item>
+              <ListGroup.Item>
+                  <Button type="button" className="btn-block" disabled={cartItems.lenght === 0} onClick={checkoutHandler}>
+                    Proceed To Checkout
+                  </Button>
+              </ListGroup.Item>
+          </ListGroup>
+        </Card>
 
-      <Col md={2}></Col>
+      </Col>
+
     </Row>
   );
-};
+}; 
 
 export default Cartscreen;
