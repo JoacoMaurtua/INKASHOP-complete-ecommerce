@@ -91,8 +91,10 @@ const Productscreen = () => {
                          <Col>
                           <Form.Select as="select" value={qty} onChange={(e) => setQty(e.target.value)}>
                             {
-                                [...Array(product.countInStock).keys()].map( x => (
-                                  <option key={x+1} value={x+1}>
+                           
+                              [...Array(product.countInStock).keys()].map(x => (  /* Crear un arreglo con el numero de posiciones que tanga el stock */
+                               
+                                <option key={x+1} value={x+1}>
                                     {x+1}
                                   </option>
                                 ))                      
