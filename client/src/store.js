@@ -5,8 +5,10 @@ import {productListReducer, productListDetailsReducer} from './reducers/productR
 import {cartReducer} from './reducers/cartReducers';
 
 //Variable que engloba a los reducers y combina sus propiedades en un solo objeto
+
+//ESTADO GLOBAL:
 const reducer = combineReducers({
-  productList: productListReducer,
+  productList: productListReducer, //pedazos del estado
   productDetails: productListDetailsReducer,
   cart: cartReducer
 });

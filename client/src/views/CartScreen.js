@@ -15,13 +15,13 @@ const Cartscreen = () => {
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cart)
-  const {cartItems} = cart;
+  const {cartItems} = cart; //Extraigo el arreglo que contrendra los objetos del carrito
   
   console.log(qty);
   console.log(location)
 
   useEffect(()=>{
-      dispatch(addCart(id,qty))
+      dispatch(addCart(id,qty)) //envio estos parametros al actions
   },[dispatch,id,qty])
 
   return (

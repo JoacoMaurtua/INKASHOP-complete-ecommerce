@@ -93,7 +93,7 @@ const Productscreen = () => {
                             setQty(e.target.value)}> {/* cambia el estado*/}
                             {
                            
-                              [...Array(product.countInStock).keys()].map(x => (
+                              [...Array(product.countInStock).keys()].map(x => (  /* Crear un arreglo con el numero de posiciones que tanga el stock */
                                
                                 <option key={x+1} value={x+1}>
                                     {x+1}
