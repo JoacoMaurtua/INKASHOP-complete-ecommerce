@@ -3,3 +3,15 @@ GET http://localhost:8000/api/products
 
 ### Buscar un solo producto
 GET http://localhost:8000/api/product/6197f36dbb1109d55be21a58
+
+
+
+###
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+
+{
+  "email":"john@example.com",
+  "password":"123456aea"
+}

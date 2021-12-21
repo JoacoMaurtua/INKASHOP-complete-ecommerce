@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 
+const bcrypt = require('bcryptjs');
+
+
 const userSchema = new mongoose.Schema({
     name:{
       type:String,
@@ -25,6 +28,11 @@ const userSchema = new mongoose.Schema({
 
 
 },{timestamps:true});
+
+userSchema.methods.matchPassword = async function(enteredPassword){
+  return await bcrypt.compare(enteredPassword, this.password)
+}
+
 
  const User = mongoose.model('User',userSchema); //el primer argumento va a mongo atlas
 

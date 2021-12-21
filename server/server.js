@@ -16,13 +16,16 @@ const PORT = process.env.PORT;
 const connectDB = require('./config/mongodb.config');
 connectDB(); //-->Llama a la funcion asincrona
 
-//Middlewares:
 
+//Midlewares para realizar consulta POST
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
 
 //Conectando con rutas:
 app.use('/api', require('./routes/product.routes'));
 
+app.use('/api', require('./routes/user.routes'));
 
 
 
