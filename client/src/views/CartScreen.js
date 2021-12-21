@@ -29,7 +29,9 @@ const Cartscreen = () => {
   console.log(location);
 
   useEffect(() => {
-    dispatch(addCart(id, qty)); //envio estos parametros al actions
+    if(id){
+      dispatch(addCart(id, qty)); //envio estos parametros al actions
+    }
   }, [dispatch, id, qty]);
 
   return (
