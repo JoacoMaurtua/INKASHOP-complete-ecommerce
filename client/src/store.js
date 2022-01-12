@@ -19,7 +19,7 @@ const cartItemsFromStorage = localStorage.getItem('cartItems')
 
 const initialState = {
   cart: {cartItems: cartItemsFromStorage}
-}; //estado inicial de la aplicacion(recibira los datos de la API)
+}; //
 
 const middleware = [thunk] // middleware para hacer llamadas asincronas en el mundo de redux
 

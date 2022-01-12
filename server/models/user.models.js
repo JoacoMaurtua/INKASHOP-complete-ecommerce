@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema({
 },{timestamps:true});
 
 userSchema.methods.matchPassword = async function(enteredPassword){
-  return await bcrypt.compare(enteredPassword, this.password)
+  return await bcrypt.compare(enteredPassword, this.password) //march de passwords en el login
 }
 
 
