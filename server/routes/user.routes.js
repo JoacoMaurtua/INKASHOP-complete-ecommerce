@@ -1,15 +1,11 @@
 const express = require('express');
-
 const router = express();
-
-const { authUser, getUserProfile } = require('../controllers/user.controllers');
-
-const { protect } = require('../middleware/addMiddleware');
+const { protect } = require('../config/authMiddleware.config');
+const {authUser, getUserProfile} = require('../controllers/user.controllers');
 
 //Rutas:
 
-router.post('/login', authUser);
-
-router.route('/profile').get(protect, getUserProfile);
+router.post('/login',authUser);
+router.get('/profile', protect, getUserProfile);
 
 module.exports = router;

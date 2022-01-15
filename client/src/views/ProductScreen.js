@@ -85,25 +85,24 @@ const Productscreen = () => {
                   </ListGroup.Item>
 
                   {product.countInStock > 0 && (
-                      <ListGroup.Item>
-                        <Row>
-                          <Col>Qty</Col>
-                          <Col>
-                            <Form.Select value={qty} onChange={(e)=>
-                            setQty(e.target.value)}> {/* cambia el estado*/}
+                    <ListGroup.Item>
+                       <Row>
+                         <Col>Qty</Col>
+                         <Col>
+                          <Form.Select as="select" value={qty} onChange={(e) => setQty(e.target.value)}>
                             {
                            
                               [...Array(product.countInStock).keys()].map(x => (  /* Crear un arreglo con el numero de posiciones que tanga el stock */
                                
                                 <option key={x+1} value={x+1}>
                                     {x+1}
-                                </option>
-                             
-                            ))}
-                            </Form.Select>
-                          </Col>
-                        </Row>
-                      </ListGroup.Item>
+                                  </option>
+                                ))                      
+                            }
+                          </Form.Select>
+                         </Col>
+                       </Row>
+                    </ListGroup.Item>
                   )}
 
                   <ListGroup.Item>
