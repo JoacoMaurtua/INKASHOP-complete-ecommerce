@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'; //useDispatch sirve para sirve para llamar una accion //useSelector sirve para seleccionar una parte del estado
 import { Link, useParams, useHistory } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap';
 import Rating from '../components/Rating';
@@ -20,7 +20,7 @@ const Productscreen = () => {
   const productDetailList = useSelector((state) => state.productDetails); //extrae datos del estado del store, en este caso la propiedad productList
   const { loading, error, product } = productDetailList;
 
-  useEffect(() => {
+  useEffect(() => { //llama a la funcion creadora de actions
     dispatch(listDetailsProduct(id));
   }, [dispatch, id]);
 
