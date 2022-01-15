@@ -1,0 +1,45 @@
+
+### REGISTER
+POST http://localhost:8000/api/register
+Content-Type: application/json
+
+{
+  "name":"sagitario",
+  "email":"sagitario@example.com",
+  "password":"sodiaco12345"
+}
+
+
+
+### USER LOGIN
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+
+{
+  "email":"tefita@example.com",
+  "password":"123456aea"
+}
+
+###ADMIN LOGIN
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+
+{
+  "email":"admin@example.com",
+  "password":"123456aea"
+}
+
+
+
+###GET COMMON USER PROFILE
+GET http://localhost:8000/api/profile
+Content-Type: application/xml
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdmMzZkYmIxMTA5ZDU1YmUyMWE1NiIsImlhdCI6MTY0MjI2NDAyMywiZXhwIjoxNjQ0ODU2MDIzfQ.H02bQ_PrgFoT_rjS_4RCNmW3o_YQTyzNslxSUISWZxA
+
+
+###GET USER PROFILE
+GET http://localhost:8000/api/profile
+Content-Type: application/xml
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdmMzZkYmIxMTA5ZDU1YmUyMWE1NCIsImlhdCI6MTY0MjI2Mjc5MiwiZXhwIjoxNjQ3NDQ2NzkyfQ.U7j8ksAr7laQy4ji8AUDw13slj5vO1VFSyom3e_qBoM

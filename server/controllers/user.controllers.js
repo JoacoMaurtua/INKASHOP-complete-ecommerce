@@ -39,7 +39,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({
     name,
     email,
-    password //plain text por ahora
+    password //ya encriptada
   })
 
   if(user){
@@ -47,6 +47,7 @@ const registerUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
+      password: user.password,
       isAdmin: user.isAdmin,
       token: generateToken(user._id)
     })
