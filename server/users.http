@@ -4,9 +4,9 @@ POST http://localhost:8000/api/register
 Content-Type: application/json
 
 {
-  "name":"sagitario",
-  "email":"sagitario@example.com",
-  "password":"sodiaco12345"
+  "name":"papo",
+  "email":"papo@example.com",
+  "password":"argentina4567"
 }
 
 

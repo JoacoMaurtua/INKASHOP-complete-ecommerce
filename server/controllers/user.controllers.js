@@ -4,74 +4,74 @@ const generateToken = require('../utils/generateToken');
 
 //LOGIN
 const authUser = asyncHandler(async (req, res) => {
-  const {email,password} = req.body
+  const { email, password } = req.body;
 
   //res.send({email,password}) //EJEMPLO
 
-  const user = await User.findOne({email})
+  const user = await User.findOne({ email });
 
-  if(user && (await user.matchPassword(password))){ //Si el usuario existe y las contraseñas coinciden
+  if (user && (await user.matchPassword(password))) {
+    //Si el usuario existe y las contraseñas coinciden
     res.json({
-      message:"Correct Login",      
+      message: 'Correct Login',
       _id: user._id,
       name: user.name,
       email: user.email,
       isAdmin: user.isAdmin,
       token: generateToken(user._id),
-    })
-  } else{
-      res.status(401);
-      throw new Error('Invalid email or password')
+    });
+  } else {
+    res.status(401);
+    throw new Error('Invalid email or password');
   }
-}) 
+});
 
 //REGISTER
 const registerUser = asyncHandler(async (req, res) => {
-  const {name,email,password} = req.body
-
-  const userExists = await User.findOne({email})
-
-  if(userExists){
-    res.status(400)
-    throw new Error('User already exists')
-  }
-
-  const user = await User.create({
-    name,
-    email,
-    password //ya encriptada
-  })
-
-  if(user){
-    res.status(201).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      password: user.password,
-      isAdmin: user.isAdmin,
-      token: generateToken(user._id)
-    })
-  }else{
-      res.status(400)
-      throw new Error('Invalid user data')
-  }
-  
-}) 
+  const { name, email, password } = req.body;
+  User.findOne({ email }).then((userExist) => {
+    if (userExist) {
+      res.status(400);
+      res.json({ error: true, message: 'User already exists' });
+    } else {
+      User.create({
+        name,
+        email,
+        password,
+      })
+        .then((user) => {
+          res.status(201).json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            isAdmin: user.isAdmin,
+            password: user.password,
+            token: generateToken(user._id),
+          });
+        })
+        .catch((error) => {
+          res.json({ error: error, message: 'Invalidate user data' });
+          res.status(400);
+        });
+    }
+  });
+});
 
 const getUserProfile = (req, res) => {
   //res.send("Success")
   User.findById(req.user._id)
-    .then(user => res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin
-    }))
+    .then((user) =>
+      res.json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        isAdmin: user.isAdmin,
+      })
+    )
     .catch((error) => {
       res.json({ error: error, message: 'User not found' });
       res.status(404);
-    })
-}
+    });
+};
 
-
-module.exports = {authUser, getUserProfile,registerUser}
+module.exports = { authUser, getUserProfile, registerUser };
