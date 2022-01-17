@@ -3,23 +3,31 @@ import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension'; //metodo para que las redux dev tools del browser se apliquen al proyecto
 import {productListReducer, productListDetailsReducer} from './reducers/productReducers';
 import {cartReducer} from './reducers/cartReducers';
-
+import { userLoginReducer } from './reducers/userReducers';
 //Variable que engloba a los reducers y combina sus propiedades en un solo objeto
 
 //ESTADO GLOBAL:
 const reducer = combineReducers({
   productList: productListReducer, //pedazos del estado
   productDetails: productListDetailsReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  userLogin: userLoginReducer,
 });
 
+//Almacenar la data del carrito de compras en el local storage
 const cartItemsFromStorage = localStorage.getItem('cartItems')
   ? JSON.parse(localStorage.getItem('cartItems'))
   : []
 
+//Almacenar la data del usuario en el local storage
+const userInfoFromStorage = localStorage.getItem('userInfo')
+? JSON.parse(localStorage.getItem('userInfo'))
+: null
+
 const initialState = {
-  cart: {cartItems: cartItemsFromStorage}
-}; //
+  cart: {cartItems: cartItemsFromStorage},
+  userLogin: {userInfo: userInfoFromStorage},
+}; 
 
 const middleware = [thunk] // middleware para hacer llamadas asincronas en el mundo de redux
 
