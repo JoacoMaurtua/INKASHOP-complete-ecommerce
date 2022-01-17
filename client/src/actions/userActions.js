@@ -35,10 +35,11 @@ export const login = (email, password) => async (dispatch) => {
 
   } catch (error) {
     dispatch({
-      type:USER_LOGIN_FAIL,
-      payload: error.response && error.response.data.message? //mismo error que apareceria en mongoDB atlas
-      error.response.data.message
-      :error.message
+      type: USER_LOGIN_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     })
   };
 

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { Login } from '../actions/userActions';
+import { login } from '../actions/userActions';
 import FormContainer from '../components/FormContainer';
 
-const Loginscreen = ({location}) => {
+
+const Loginscreen = () => {
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -15,16 +16,43 @@ const Loginscreen = ({location}) => {
 
   const { email, password } = state;
 
+  const dispatch = useDispatch()
+
+  const userLogin = useSelector(state => state.userLogin)
+  const {loading,error,userInfo} = userLogin
+
+  const location = useLocation();
+
+  const history = useHistory();
+
   const redirect = location.search ? location.search.split('=')[1]:'/'
+
+  //Nos redirija a la pagina si ya estamos logueados
+  useEffect(() => {
+    if(userInfo){
+      history.push(redirect)
+    }
+  },[history,userInfo,redirect])
 
   const submitHandler = (event) => {
     event.preventDefault();
     //USER DISPATCH
+    dispatch(login(email,password))
   };
+
+  const onChangeHandler = (event) => {
+    const {name,value} = event.target;
+    setState({
+      ...state,
+      [name]:value
+    })
+  }
 
   return (
     <FormContainer>
       <h1>Sign In</h1>
+      {error && <Message variant='danger'>{error}</Message>}
+      {loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="email">
           <Form.Label>Email Address: </Form.Label>
@@ -32,8 +60,9 @@ const Loginscreen = ({location}) => {
             style={{marginBottom:'1rem'}}
             type="email"
             placeholder="Enter your email"
+            name='email'
             value={email}
-            //onChange={(event) => setEmail(event.target.value)}
+            onChange={onChangeHandler}
           ></Form.Control>
         </Form.Group>
 
@@ -43,8 +72,9 @@ const Loginscreen = ({location}) => {
             style={{marginBottom:'1rem'}}
             type="password"
             placeholder="Enter your password"
-            value={email}
-            //onChange={(event) => setPassword(event.target.value)}
+            name='password'
+            value={password}
+            onChange={onChangeHandler}
           ></Form.Control>
         </Form.Group>
 
