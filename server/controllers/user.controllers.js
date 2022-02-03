@@ -13,6 +13,16 @@ const findUsers = (req, res) => {
     });
 };
 
+//GET SINGLE USER
+const findSingleUser = (req,res) =>{
+  User.findOne({_id:req.params.id})
+      .then(results => res.json({data:results}))
+      .catch(error=>{
+        res.json({error:error, message:'User not found'})
+        res.sendStatus(404)
+      })
+};
+
 //LOGIN
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
@@ -110,4 +120,4 @@ const updateUserProfile = (req, res) => {
   })
 };
 
-module.exports = { findUsers, authUser, getUserProfile, registerUser, updateUserProfile };
+module.exports = { findUsers, authUser, getUserProfile, registerUser, updateUserProfile,findSingleUser };

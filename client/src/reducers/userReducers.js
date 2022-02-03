@@ -5,6 +5,9 @@ import {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
+  USER_DETAILS_REQUEST,
+  USER_DETAILS_SUCCESS,
+  USER_DETAILS_FAIL,
   USER_LOGOUT,
 } from '../constants/userConstants';
 
@@ -38,6 +41,23 @@ export const userRegisterReducer = (state = {}, action) => {
       return { loading: false, userInfo: action.payload }; //retorna un objeto nuevo con el estado(array) lleno con los datos traidos por axios de la DB
 
     case USER_REGISTER_FAIL:
+      return { loading: false, error: action.payload }; //retorna un objeto nuevo que contiene el error definido en productActions.js
+
+    default:
+      return state; //retorna el mismo estado en caso no se envie una accion valida
+  }
+};
+
+
+export const userDetailsReducer = (state = {user:{}}, action) => {
+  switch (action.type) {
+    case USER_DETAILS_REQUEST:
+      return { ...state,loading: true }; //retorna un objeto nuevo con el estado(array) aun vacio
+
+    case USER_DETAILS_SUCCESS:
+      return { loading: false, user: action.payload }; //retorna un objeto nuevo con el estado(array) lleno con los datos traidos por axios de la DB
+
+    case USER_DETAILS_FAIL:
       return { loading: false, error: action.payload }; //retorna un objeto nuevo que contiene el error definido en productActions.js
 
     default:

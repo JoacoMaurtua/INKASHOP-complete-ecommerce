@@ -2,6 +2,10 @@
 
 GET http://localhost:8000/api/users
 
+### GET SINGLE USER
+
+GET http://localhost:8000/api/6197f36dbb1109d55be21a56
+
 
 ### REGISTER
 POST http://localhost:8000/api/register
