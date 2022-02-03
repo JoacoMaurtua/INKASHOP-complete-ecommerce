@@ -18,7 +18,7 @@ const Loginscreen = () => {
 
   const dispatch = useDispatch()
 
-  const userLogin = useSelector(state => state.userLogin)
+  const userLogin = useSelector(state => state.userLogin) //extrae un pedazo del state del store
   const {loading,error,userInfo} = userLogin
 
   const location = useLocation();
@@ -27,12 +27,21 @@ const Loginscreen = () => {
 
   const redirect = location.search ? location.search.split('=')[1]:'/'
 
+  /*EJEMPLO*/
+  ///search?q=bugatti => location.search?
+
+  // location.search.split('=')[1] => 0[search?q] = 1[bugatti]
+
+  //redirect = bugatti
+
   //Nos redirija a la pagina si ya estamos logueados
   useEffect(() => {
     if(userInfo){
-      history.push(redirect)
+      history.push(redirect) //por ahora siempre nos manda a '/' => home
     }
   },[history,userInfo,redirect])
+
+  console.log('redirect: ',redirect);
 
   const submitHandler = (event) => {
     event.preventDefault();

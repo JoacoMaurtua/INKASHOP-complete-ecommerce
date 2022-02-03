@@ -2,6 +2,17 @@ const User = require('../models/user.models');
 const asyncHandler = require('express-async-handler');
 const generateToken = require('../utils/generateToken');
 
+
+//GET ALL USERS
+const findUsers = (req, res) => {
+  User.find({})
+    .then((user) => res.json(user))
+    .catch((error) => {
+      res.json({ error: error, message: 'Usuarios no encontrados' });
+      res.sendStatus(404);
+    });
+};
+
 //LOGIN
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
@@ -74,4 +85,4 @@ const getUserProfile = (req, res) => {
     });
 };
 
-module.exports = { authUser, getUserProfile, registerUser };
+module.exports = { findUsers, authUser, getUserProfile, registerUser };

@@ -16,7 +16,7 @@ const RegisterScreen = () => {
     confirmPassword: ''
   });
 
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState(null); //passwords hacen o no match
 
   const { name, email, password, confirmPassword } = state;
 
