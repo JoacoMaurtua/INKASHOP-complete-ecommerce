@@ -47,3 +47,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdmMzZkY
 GET http://localhost:8000/api/profile
 Content-Type: application/xml
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdmMzZkYmIxMTA5ZDU1YmUyMWE1NCIsImlhdCI6MTY0MjI2Mjc5MiwiZXhwIjoxNjQ3NDQ2NzkyfQ.U7j8ksAr7laQy4ji8AUDw13slj5vO1VFSyom3e_qBoM
+
+###PUT USER Profile
+
+PUT http://localhost:8000/api/updateProfile/61e30c1581f1572f13a14a20
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdmMzZkYmIxMTA5ZDU1YmUyMWE1NCIsImlhdCI6MTY0MjI2Mjc5MiwiZXhwIjoxNjQ3NDQ2NzkyfQ.U7j8ksAr7laQy4ji8AUDw13slj5vO1VFSyom3e_qBoM
+
+{
+  "name":"Walls",
+  "email":"walls@example.com",
+  "password":"spain45678"
+}

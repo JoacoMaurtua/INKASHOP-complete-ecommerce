@@ -85,4 +85,29 @@ const getUserProfile = (req, res) => {
     });
 };
 
-module.exports = { findUsers, authUser, getUserProfile, registerUser };
+//UPDATE USER PROFILE
+const updateUserProfile = (req, res) => {
+  //res.send("Success")
+  const {name,email,password} = req.body
+
+  User.findOneAndUpdate({_id: req.params.id}, {
+    name,
+    email,
+    password
+  })
+  
+  .then(result => res.json({
+    _id: result._id,
+    name:name,
+    email:email,
+    password:password,
+    isAdmin: result.isAdmin,
+    token: generateToken(result._id)
+  }))
+  .catch(error => {
+      res.json({error:error, message:"We cannot update the profile"});
+      res.sendStatus(500);
+  })
+};
+
+module.exports = { findUsers, authUser, getUserProfile, registerUser, updateUserProfile };
