@@ -9,6 +9,10 @@ import {
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
   USER_LOGOUT,
+  USER_UPDATE_PROFILE_REQUEST,
+  USER_UPDATE_PROFILE_SUCCESS,
+  USER_UPDATE_PROFILE_FAIL,
+  //USER_UPDATE_PROFILE_RESET
 } from '../constants/userConstants';
 
 export const userLoginReducer = (state = {}, action) => {
@@ -58,6 +62,23 @@ export const userDetailsReducer = (state = {user:{}}, action) => {
       return { loading: false, user: action.payload }; //retorna un objeto nuevo con el estado(array) lleno con los datos traidos por axios de la DB
 
     case USER_DETAILS_FAIL:
+      return { loading: false, error: action.payload }; //retorna un objeto nuevo que contiene el error definido en productActions.js
+
+    default:
+      return state; //retorna el mismo estado en caso no se envie una accion valida
+  }
+};
+
+
+export const userUpdateProfileReducer = (state = {}, action) => {
+  switch (action.type) {
+    case USER_UPDATE_PROFILE_REQUEST:
+      return {loading: true }; //retorna un objeto nuevo con el estado(array) aun vacio
+
+    case USER_UPDATE_PROFILE_SUCCESS:
+      return { loading: false, success:true, userInfo: action.payload }; //retorna un objeto nuevo con el estado(array) lleno con los datos traidos por axios de la DB
+
+    case USER_UPDATE_PROFILE_FAIL:
       return { loading: false, error: action.payload }; //retorna un objeto nuevo que contiene el error definido en productActions.js
 
     default:

@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension'; //metodo para que las redux dev tools del browser se apliquen al proyecto
 import {productListReducer, productListDetailsReducer} from './reducers/productReducers';
 import {cartReducer} from './reducers/cartReducers';
-import { userLoginReducer,userRegisterReducer,userDetailsReducer } from './reducers/userReducers';
+import { userLoginReducer,userRegisterReducer,userDetailsReducer,userUpdateProfileReducer } from './reducers/userReducers';
 //Variable que engloba a los reducers y combina sus propiedades en un solo objeto
 
 //ESTADO GLOBAL:
@@ -13,7 +13,8 @@ const reducer = combineReducers({
   cart: cartReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
-  userDetails: userDetailsReducer
+  userDetails: userDetailsReducer,
+  userUpdateProfile:userUpdateProfileReducer,
 });
 
 //Almacenar la data del carrito de compras en el local storage
