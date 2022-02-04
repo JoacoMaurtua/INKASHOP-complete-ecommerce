@@ -12,7 +12,7 @@ import {
   USER_UPDATE_PROFILE_REQUEST,
   USER_UPDATE_PROFILE_SUCCESS,
   USER_UPDATE_PROFILE_FAIL,
-  //USER_UPDATE_PROFILE_RESET
+  USER_UPDATE_PROFILE_RESET
 } from '../constants/userConstants';
 
 export const userLoginReducer = (state = {}, action) => {
@@ -80,6 +80,9 @@ export const userUpdateProfileReducer = (state = {}, action) => {
 
     case USER_UPDATE_PROFILE_FAIL:
       return { loading: false, error: action.payload }; //retorna un objeto nuevo que contiene el error definido en productActions.js
+
+    case USER_UPDATE_PROFILE_RESET:
+      return {}
 
     default:
       return state; //retorna el mismo estado en caso no se envie una accion valida
