@@ -107,34 +107,35 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
   try {
     dispatch({
       type: USER_DETAILS_REQUEST,
-    });
+    })
 
     const {
       userLogin: { userInfo },
-    } = getState();
+    } = getState()
 
     const config = {
-      //analogo de huachao-mao
       headers: {
-        //headers de los tokens
-        'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
-    };
+    }
 
-    const { data } = await axios.get(`/api/${id}`, config);
+    const { data } = await axios.get(`/api/${id}`, config)
 
     dispatch({
       type: USER_DETAILS_SUCCESS,
       payload: data,
-    });
+    })
   } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message
+    if (message === 'Not authorized, token failed') {
+      dispatch(logout())
+    }
     dispatch({
       type: USER_DETAILS_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
+      payload: message,
+    })
   }
-};
+}

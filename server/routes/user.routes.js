@@ -6,7 +6,7 @@ const {findUsers,authUser, getUserProfile, registerUser, updateUserProfile,findS
 //Rutas:
 
 router.get('/users',findUsers); //Obtiene todos los users
-router.get('/:id',findSingleUser) //Obtiene un unico user
+router.get('/user/:id',findSingleUser) //Obtiene un unico user
 router.post('/register',registerUser);
 router.post('/login',authUser);
 router.get('/profile', protect, getUserProfile);
