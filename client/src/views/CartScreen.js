@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, useParams, useLocation } from 'react-router-dom';
+import { Link, useParams, useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Row,
@@ -17,6 +17,8 @@ const Cartscreen = () => {
   const { id } = useParams();
 
   const location = useLocation();
+
+  const history = useHistory();
 
   const qty = location.search ? Number(location.search.split('=')[1]) : 1;
 
@@ -39,7 +41,7 @@ const Cartscreen = () => {
   };
 
   const checkoutHandler = () =>{
-    console.log('checkout') //Ruta para loguearse
+    history.push('/login?redirect=shipping')
   }
 
   return (
@@ -102,7 +104,12 @@ const Cartscreen = () => {
                   ${cartItems.reduce((acc,item) => acc + item.qty * item.price, 0).toFixed(2)}
               </ListGroup.Item>
               <ListGroup.Item>
-                  <Button type="button" className="btn-block" disabled={cartItems.lenght === 0} onClick={checkoutHandler}>
+                  <Button 
+                      type="button" 
+                      className="btn-block" 
+                      disabled={cartItems.lenght === 0} 
+                      onClick={checkoutHandler}
+                    >
                     Proceed To Checkout
                   </Button>
               </ListGroup.Item>

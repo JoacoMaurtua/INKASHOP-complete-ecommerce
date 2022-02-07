@@ -40,7 +40,7 @@ const ProfileScreen = () => {
     if(!userInfo){
       history.push('/login')
     }else{
-      if(!user || !user.name){
+      if(!user || !user.name || success){
           dispatch({type: USER_UPDATE_PROFILE_RESET})
           dispatch(getUserDetails('profile'))
       }else{
@@ -50,7 +50,7 @@ const ProfileScreen = () => {
           })
       }
     }
-  },[dispatch,history,userInfo,user])
+  },[dispatch,history,userInfo,user,success])
 
   const submitHandler = (event) => {
     event.preventDefault();
