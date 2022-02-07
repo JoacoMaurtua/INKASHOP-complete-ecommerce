@@ -10,6 +10,6 @@ router.get('/user/:id',findSingleUser) //Obtiene un unico user
 router.post('/register',registerUser);
 router.post('/login',authUser);
 router.get('/profile', protect, getUserProfile);
-router.put('/updateProfile/:id',protect, updateUserProfile);
+router.put('/updateProfile',protect, updateUserProfile);
 
 module.exports = router;

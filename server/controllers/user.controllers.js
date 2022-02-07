@@ -96,31 +96,21 @@ const getUserProfile = (req, res) => {
 };
 
 //UPDATE USER PROFILE
-const updateUserProfile = (req, res) => {
+
+ /* const updateUserProfile = (req, res) => {
   //res.send("Success")
   const {name,email,password} = req.body
 
-  User.findOneAndUpdate({_id: req.params.id}, {
-    name,
-    email,
-    password
-  })
-  
-  .then(result => res.json({
-    _id: result._id,
-    name:name,
-    email:email,
-    password:password,
-    isAdmin: result.isAdmin,
-    token: generateToken(result._id)
-  }))
-  .catch(error => {
-      res.json({error:error, message:"We cannot update the profile"});
-      res.sendStatus(500);
-  })
-}; 
+  User.findOneAndUpdate({_id: req.user._id}, req.body, {new:true})
+    .then(result => res.json({data:result}))
+    .catch(error => {
+        res.json({error:error, message:"Something went wrong"});
+        res.sendStatus(500);
+    })
+};  */
 
-/* const updateUserProfile = asyncHandler(async (req, res) => {
+
+  const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id)
 
   if (user) {
@@ -143,6 +133,7 @@ const updateUserProfile = (req, res) => {
     res.status(404)
     throw new Error('User not found')
   }
-}) */
+}) 
+
 
 module.exports = { findUsers, authUser, getUserProfile, registerUser, updateUserProfile,findSingleUser };
