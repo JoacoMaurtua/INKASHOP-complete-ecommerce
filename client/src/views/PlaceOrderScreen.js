@@ -9,6 +9,21 @@ import { Link } from 'react-router-dom';
 const Placeorderscreen = () => {
   const cart = useSelector((state) => state.cart);
 
+  const  addDecimals =(num)=>{
+    return (Math.round(num*100)/100).toFixed(2)
+  }
+
+  // Calculando precios: 
+  cart.itemsPrice = addDecimals(cart.cartItems.reduce((acc, item) => 
+    acc + item.price * item.qty, 0
+  ))
+
+  cart.shippingPrice = addDecimals(cart.itemsPrice > 500? 0: 100)
+
+  cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice).toFixed(2)))
+
+  cart.totalPrice = addDecimals(Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice))
+
   const placeOrderHandler =(event)=>{
     console.log('place order')
   }
