@@ -8,6 +8,11 @@ import { Link } from 'react-router-dom';
 
 const Placeorderscreen = () => {
   const cart = useSelector((state) => state.cart);
+
+  const placeOrderHandler =(event)=>{
+    console.log('place order')
+  }
+
   return (
     <>
       <CheckoutSteps step1 step2 step3 step4 />
@@ -63,6 +68,54 @@ const Placeorderscreen = () => {
               )}
             </ListGroup.Item>
           </ListGroup>
+        </Col>
+
+        <Col md={4}>
+          <Card style={{height:"100%"}}>
+            <ListGroup variant="flush">
+              <ListGroup.Item>
+                <h2>Order Summary</h2>
+              </ListGroup.Item>
+
+              <ListGroup.Item>
+                <Row>
+                  <Col>Items</Col>
+                  <Col>${cart.itemsPrice}</Col>
+                </Row>
+              </ListGroup.Item>
+
+              <ListGroup.Item>
+                <Row>
+                  <Col>Shipping</Col>
+                  <Col>${cart.shippingPrice}</Col>
+                </Row>
+              </ListGroup.Item>
+
+              <ListGroup.Item>
+                <Row>
+                  <Col>Tax</Col>
+                  <Col>${cart.taxPrice}</Col>
+                </Row>
+              </ListGroup.Item>
+
+              <ListGroup.Item>
+                <Row>
+                  <Col>Total</Col>
+                  <Col>${cart.totalPrice}</Col>
+                </Row>
+              </ListGroup.Item>
+
+              <ListGroup.Item>
+                <Button
+                  style={{marginTop:'2rem'}}
+                  type="button"
+                  className="btn-block"
+                  disabled={cart.cartItems === 0}
+                  onClick={placeOrderHandler}
+                >Place Order</Button>
+              </ListGroup.Item>
+            </ListGroup>
+          </Card>
         </Col>
       </Row>
     </>
