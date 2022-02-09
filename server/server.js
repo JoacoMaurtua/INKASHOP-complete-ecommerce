@@ -6,6 +6,7 @@ const express = require('express');
 const app = express();
 
 const PORT = process.env.PORT;
+ 
 
 /* app.get('/',(req,res)=>{
   res.send('API is running...')
@@ -27,7 +28,7 @@ app.use('/api', require('./routes/product.routes'));
 
 app.use('/api', require('./routes/user.routes'));
 
-app.use('/api', require('./routes/order.routes'))
+app.use('/api', require('./routes/order.routes'));
 
 
 

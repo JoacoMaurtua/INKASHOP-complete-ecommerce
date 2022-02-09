@@ -6,7 +6,7 @@ const {addOrderItems} = require('../controllers/order.controllers');
 //Rutas:
 
 
-router.post('/orders',protect,addOrderItems);
+router.post('/order',protect,addOrderItems);
 
 
 module.exports = router;

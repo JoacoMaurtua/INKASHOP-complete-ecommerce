@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import CheckoutSteps from '../components/CheckoutSteps';
 import Message from '../components/Message';
 import { Link } from 'react-router-dom';
+import {createOrder} from '../actions/orderActions';
 
 const Placeorderscreen = () => {
+  const dispatch = useDispatch();
+
+  const history = useHistory();
+
   const cart = useSelector((state) => state.cart);
 
   const  addDecimals =(num)=>{
@@ -24,9 +29,32 @@ const Placeorderscreen = () => {
 
   cart.totalPrice = addDecimals(Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice))
 
-  const placeOrderHandler =(event)=>{
-    console.log('place order')
+  //necesitamos envolver toda los datos de la orden en un estado
+
+  const orderCreate = useSelector(state => state.orderCreate)
+  const {order, success, error} = orderCreate;
+
+  useEffect(() =>{
+    if(success){
+      history.push(`/order/${order._id}`) //aun no esta creada la ruta
+    }
+  },[success,history,order])
+
+  const placeOrderHandler = () => {
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        taxPrice: cart.taxPrice,
+        totalPrice: cart.totalPrice,
+      })
+    )
   }
+
+  console.log('order:',order)
 
   return (
     <>
@@ -118,6 +146,10 @@ const Placeorderscreen = () => {
                   <Col>Total</Col>
                   <Col>${cart.totalPrice}</Col>
                 </Row>
+              </ListGroup.Item>
+
+              <ListGroup.Item>
+                  {error && <Message variant='danger'>{error}</Message>}
               </ListGroup.Item>
 
               <ListGroup.Item>
