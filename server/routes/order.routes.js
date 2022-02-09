@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express();
 const { protect } = require('../config/authMiddleware.config');
-const {addOrderItems} = require('../controllers/order.controller');
+const {addOrderItems} = require('../controllers/order.controllers');
 
 //Rutas:
 
