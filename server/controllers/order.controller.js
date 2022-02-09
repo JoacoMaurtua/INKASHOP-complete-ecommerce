@@ -1,17 +1,18 @@
 const Order = require('../models/order.models');
+const asyncHandler = require('express-async-handler');
 
-const addOrderItems = (req, res) => {
+const addOrderItems = asyncHandler(async (req, res) => {
   const {
-    cartItems, 
+    orderItems, 
     shippingAddress, 
     paymentMethod,
     itemsPrice, 
     taxPrice, 
     shippingPrice, 
     totalPrice
-  } = req.body //Data de carga traida de reducers
+  } = req.body //Parametros que recibe el objeto order en order.models
 
-  if(cartItems && cartItems.length === 0){
+  if(orderItems && orderItems.length === 0){
     res.status(400)
     throw new Error('No order items')
     return
@@ -31,7 +32,7 @@ const addOrderItems = (req, res) => {
 
     res.status(201).json(createdOrder)
   }
-};
+});
 
 
 module.exports = {addOrderItems};
