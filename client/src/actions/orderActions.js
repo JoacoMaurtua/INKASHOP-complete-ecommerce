@@ -5,12 +5,13 @@ import {
 } from '../constants/orderConstants';
 import axios from 'axios';
 
-export const createOrder = (order) => async (dispatch, getState) => {
+export const createOrder = (order) => async (dispatch, getState) => { //objeto gigante con toda la info de lo que estas comprando
   try {
     dispatch({
       type: ORDER_CREATE_REQUEST,
     })
 
+    //Autorizacion del token y su uso para lo que sea
     const {
       userLogin: { userInfo },
     } = getState()
@@ -24,6 +25,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
 
     const { data } = await axios.post(`/api/order`, order, config)
 
+    
     dispatch({
       type: ORDER_CREATE_SUCCESS,
       payload: data,

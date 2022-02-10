@@ -12,7 +12,7 @@ const Placeorderscreen = () => {
 
   const history = useHistory();
 
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart); //cart del store
 
   const  addDecimals =(num)=>{
     return (Math.round(num*100)/100).toFixed(2)
@@ -40,7 +40,7 @@ const Placeorderscreen = () => {
     }
   },[success,history,order])
 
-  const placeOrderHandler = () => {
+  const placeOrderHandler = () => { //lleno mi esquema de order con la info del carrito
     dispatch(
       createOrder({
         orderItems: cart.cartItems,
