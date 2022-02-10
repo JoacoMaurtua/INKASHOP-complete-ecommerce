@@ -46,6 +46,43 @@ export const createOrder = (order) => async (dispatch, getState) => { //objeto g
 }
 
 
+export const getOrderDetails = (id) => async (dispatch, getState) => { //objeto gigante con toda la info de lo que estas comprando
+  try {
+    dispatch({
+      type: ORDER_DETAILS_REQUEST,
+    })
+
+    //Autorizacion del token y su uso para lo que sea
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+
+    const { data } = await axios.get(`/api/order/${id}`, config)
+
+    
+    dispatch({
+      type: ORDER_DETAILS_SUCCESS,
+      payload: data,
+    })
+   
+  } catch (error) {
+    dispatch({
+      type: ORDER_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+}
+
+
 
 
 
