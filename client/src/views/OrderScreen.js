@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -13,11 +13,18 @@ const OrderScreen = () => {
 
   const {id} = useParams();
 
+  //Paquete SDK de payPal
+  const [sdkReady, setSdkReady] = useState(false);
+  console.log({sdkReady:sdkReady});
   
   //necesitamos envolver toda los datos de la orden en un estado
 
   const orderDetails = useSelector(state => state.orderDetails)
   const {order, loading, error} = orderDetails;
+
+  //comprobar si el pago se ha hecho correctamente
+  const orderPay = useSelector(state => state.orderPay)
+  const {loading:loadingPay, success:successPay} = orderPay;
 
 
 
@@ -35,17 +42,30 @@ const OrderScreen = () => {
 
   useEffect(() =>{
 
+    //Funcion asyncrona para agregar el script del sdk de paypal al codigo fuente HTML
     const addPayPalScript = async() =>{
       const {data: clientId} = await axios.get('/api/config/paypal')
-      console.log({clientId:clientId});
+      const script = document.createElement('script')
+      script.type = 'text/javascript'
+      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
+      script.async = true
+      script.onload = () =>{
+        setSdkReady(true)
+      }
+      document.body.appendChild(script);  
     }
 
-    addPayPalScript();
 
-    if(!order || order._id !== id) {
+    if(!order || order._id !== id || successPay) {
       dispatch(getOrderDetails(id))
-  }
-  },[dispatch,id,order])
+    } else if(!order.isPaid){ //Si no se ha pagado la orden, no muestra la interfaz de payPal
+        if(!window.paypal){ 
+          addPayPalScript()
+        }else{
+          setSdkReady(true)
+        }
+    }
+  },[dispatch,id,order,successPay])
 
  
 
