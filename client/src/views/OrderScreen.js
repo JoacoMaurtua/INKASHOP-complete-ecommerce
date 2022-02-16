@@ -6,6 +6,7 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { Link } from 'react-router-dom';
 import {getOrderDetails} from '../actions/orderActions';
+import axios from 'axios';
 
 const OrderScreen = () => {
   const dispatch = useDispatch();
@@ -33,6 +34,14 @@ const OrderScreen = () => {
   console.log({order:order})
 
   useEffect(() =>{
+
+    const addPayPalScript = async() =>{
+      const {data: clientId} = await axios.get('/api/config/paypal')
+      console.log({clientId:clientId});
+    }
+
+    addPayPalScript();
+
     if(!order || order._id !== id) {
       dispatch(getOrderDetails(id))
   }

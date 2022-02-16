@@ -30,8 +30,17 @@ app.use('/api', require('./routes/user.routes'));
 
 app.use('/api', require('./routes/order.routes'));
 
-
+app.get('/api/config/paypal', (req,res) => //PayPal
+  res.send(process.env.PAYPAL_CLIENT_ID)
+)
 
 app.listen(PORT,()=>{
   console.log(`1: Servidor corriendo en ${process.env.NODE_ENV} en el puerto ${PORT}`)
 });
+
+/*
+  PASOS PARA USAR PAYPAL:
+  1) CREO UNA CUENTA DE INKASHOP EN SANDBOX
+  2) ACCEDO AL ENDPOINT DESDE EL SERVER
+
+*/
