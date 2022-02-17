@@ -30,7 +30,7 @@ app.use('/api', require('./routes/user.routes'));
 
 app.use('/api', require('./routes/order.routes'));
 
-app.get('/api/config/paypal', (req,res) => //PayPal
+app.get('/api/config/paypal', (req, res) => //PayPal
   res.send(process.env.PAYPAL_CLIENT_ID)
 )
 

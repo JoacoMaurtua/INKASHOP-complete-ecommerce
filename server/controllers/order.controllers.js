@@ -59,10 +59,10 @@ const addOrderItems = asyncHandler(async (req, res) => {
   }
 });
 
-const updateOrderToPaid = asyncHandler(async (req,res) => {
-  const order = await Order.findById(req.params.is)
+const updateOrderToPaid = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id)
 
-  if(order){
+  if (order) {
     order.isPaid = true
     order.paidAt = Date.now()
     order.paymentResult = {
@@ -72,13 +72,13 @@ const updateOrderToPaid = asyncHandler(async (req,res) => {
       email_address: req.body.payer.email_address,
     }
 
-    const updatedOrder = await order.save(); //save() guarda el documento en la base de datos
+    const updatedOrder = await order.save()
 
     res.json(updatedOrder)
-  }else{
+  } else {
     res.status(404)
     throw new Error('Order not found')
   }
-});
+})
 
 module.exports = { addOrderItems, getSingleOrder,updateOrderToPaid };
