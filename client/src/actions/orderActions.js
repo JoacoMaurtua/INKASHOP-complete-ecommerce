@@ -8,7 +8,7 @@ import {
   ORDER_PAY_REQUEST,
   ORDER_PAY_SUCCESS,
   ORDER_PAY_FAIL,
-  ORDER_PAY_RESET,
+  //ORDER_PAY_RESET,
 } from '../constants/orderConstants';
 import axios from 'axios';
 
@@ -83,7 +83,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
   }
 };
 
-export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
+export const payOrder = (orderId, paymentResult) => async (dispatch, getState) => { //paymentResult es un objeto que viene de PayPal
   try {
     dispatch({
       type: ORDER_PAY_REQUEST,
@@ -101,7 +101,7 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
     };
 
     const { data } = await axios.put(
-      `/api/order/${id}/pay`,
+      `/api/order/${orderId}/pay`,           //Ruta que actualiza una nueva orden considerando los datos del paymentResult
       paymentResult,
       config
     );

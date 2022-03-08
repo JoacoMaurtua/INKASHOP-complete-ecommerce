@@ -4,7 +4,7 @@ GET http://localhost:8000/api/users
 
 ### GET SINGLE USER
 
-GET http://localhost:8000/api/user/61f4a0652b6f41b26b783c52
+GET http://localhost:8000/api/user/62041990fb636bd8a4342ee7
 
 
 ### REGISTER

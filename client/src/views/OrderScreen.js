@@ -73,7 +73,7 @@ const OrderScreen = () => {
     }
   }, [dispatch,history,order,id,successPay,userInfo])
 
-  const successPaymentHandler = (paymentResult) => {
+  const successPaymentHandler = (paymentResult) => { //paymentresult viene de paylpal
     console.log(paymentResult)
     dispatch(payOrder(id, paymentResult))
   }

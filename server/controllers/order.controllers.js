@@ -81,4 +81,38 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
   }
 })
 
-module.exports = { addOrderItems, getSingleOrder,updateOrderToPaid };
+// @desc    Get logged in user orders
+// @route   GET /api/orders/myorders
+// @access  Private
+const getMyOrders = asyncHandler(async (req, res) => {
+  const orders = await Order.find({ user: req.user._id })
+  res.json(orders)
+}); 
+
+
+//CONTROLLER PARA DEVOLVER TODAS LAS ORDENES
+/* const getMyOrders = (req,res) =>{
+  Order.find()
+        .then(result => res.json(result))
+        .catch(error => {
+            res.json({error:error, message:"Something went wrong"});
+            res.sendStatus(404)
+        })
+};   
+ */
+
+/* Project.findById(req.params.id)
+        .then(result => res.json({data:result}))
+        .catch(error => {
+            res.json({error:error, message:"Something went wrong"});
+            res.sendStatus(404)
+        }) */
+
+
+
+//estoy atascado en este punto
+
+module.exports = { addOrderItems, getSingleOrder,updateOrderToPaid, getMyOrders };
+
+
+
