@@ -1,4 +1,4 @@
-###GET(Traer un usuario e particular)
+###GET(Traer una orden en particular)
 
 GET http://localhost:8000/api/order/6227804f1b20dcfec42168e6
 Content-Type: application/xml
@@ -8,3 +8,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdmMzZkY
 GET http://localhost:8000/api/myorders
 Content-Type: application/xml
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdmMzZkYmIxMTA5ZDU1YmUyMWE1NiIsImlhdCI6MTY0MjI2NDAyMywiZXhwIjoxNjQ0ODU2MDIzfQ.H02bQ_PrgFoT_rjS_4RCNmW3o_YQTyzNslxSUISWZxA
+

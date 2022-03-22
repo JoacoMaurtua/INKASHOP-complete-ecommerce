@@ -1,16 +1,23 @@
 const mongoose = require('mongoose');
 
 //Esta es una entidad debil
-const reviewSchema = new mongoose.Schema({
+const reviewSchema = new mongoose.Schema(
+{
   name: {type: String, required: true},
   rating: {type: Number, required: true},
-  comment: {type: String, required: true}
+  comment: {type: String, required: true},
+  user:{
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'User',
+  }
 }, {timestamps:true});
 
 const productSchema = new mongoose.Schema({
 
   //Relacion/anidamiento con esquema User
   user:{
+    //_id --> mongoose
     type: mongoose.Schema.Types.ObjectId,
     required: [true,'Este campo es obligatorio'],
     ref: 'User'

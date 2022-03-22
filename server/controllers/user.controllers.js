@@ -15,7 +15,7 @@ const findUsers = (req, res) => {
 
 //GET SINGLE USER
 const findSingleUser = (req,res) =>{
-  User.findOne({_id:req.params.id})
+  User.findOne({_id:req.params.id}).select('-password')
       .then(results => res.json({data:results}))
       .catch(error=>{
         res.json({error:error, message:'User not found'})
@@ -41,6 +41,7 @@ const authUser = asyncHandler(async (req, res) => {
       isAdmin: user.isAdmin,
       token: generateToken(user._id),
     });
+    
   } else {
     res.status(401);
     res.json({ error: true, message: 'Invalid email or password' });;
@@ -78,37 +79,25 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 });
 
-const getUserProfile = (req, res) => {
-  //res.send("Success")
-  User.findById(req.user._id)
-    .then((user) =>
-      res.json({
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        isAdmin: user.isAdmin,
-      })
-    )
-    .catch((error) => {
-      res.json({ error: error, message: 'User not found' });
-      res.status(404);
-    });
-};
+// GET A SIMPLE USER PROFILE
+
+const getUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id)
+
+  if (user) {
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    })
+  } else {
+    res.status(404)
+    throw new Error('User not found')
+  }
+})
 
 //UPDATE USER PROFILE
-
- /* const updateUserProfile = (req, res) => {
-  //res.send("Success")
-  const {name,email,password} = req.body
-
-  User.findOneAndUpdate({_id: req.user._id}, req.body, {new:true})
-    .then(result => res.json({data:result}))
-    .catch(error => {
-        res.json({error:error, message:"Something went wrong"});
-        res.sendStatus(500);
-    })
-};  */
-
 
   const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id)
@@ -134,6 +123,8 @@ const getUserProfile = (req, res) => {
     throw new Error('User not found')
   }
 }) 
+
+
 
 
 module.exports = { findUsers, authUser, getUserProfile, registerUser, updateUserProfile,findSingleUser };

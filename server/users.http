@@ -4,7 +4,9 @@ GET http://localhost:8000/api/users
 
 ### GET SINGLE USER
 
-GET http://localhost:8000/api/user/62041990fb636bd8a4342ee7
+GET http://localhost:8000/api/user/6239207967a23d1d0f2ef0cb
+Content-Type: application/xml
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdmMzZkYmIxMTA5ZDU1YmUyMWE1NiIsImlhdCI6MTY0MjI2NDAyMywiZXhwIjoxNjQ0ODU2MDIzfQ.H02bQ_PrgFoT_rjS_4RCNmW3o_YQTyzNslxSUISWZxA
 
 
 ### REGISTER

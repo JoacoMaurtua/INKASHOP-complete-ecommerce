@@ -1,6 +1,8 @@
 const Order = require('../models/order.models');
 const asyncHandler = require('express-async-handler');
+const ObjectId = require('mongodb').ObjectId;
 
+//CONTROLLER PARA AGREGAR UNA ORDEN
 const addOrderItems = asyncHandler(async (req, res) => {
   const {
     orderItems,
@@ -43,6 +45,8 @@ const addOrderItems = asyncHandler(async (req, res) => {
        })
  };  */
 
+
+//CONTROLLER PARA DEVOLVER UNA ORDEN
  const getSingleOrder = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id).populate(
     'user',
@@ -59,6 +63,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
   }
 });
 
+//CONTROLLER PARA ACTUALIZAR EL ESTADO DE UNA ORDEN
 const updateOrderToPaid = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id)
 
@@ -81,33 +86,33 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
   }
 })
 
-// @desc    Get logged in user orders
-// @route   GET /api/orders/myorders
-// @access  Private
+
+//CONTROLLER PARA DEVOLVER TODAS LAS ORDENES DE UN USER
+
+//VERSION 1
 const getMyOrders = asyncHandler(async (req, res) => {
-  const orders = await Order.find({ user: req.user._id })
-  res.json(orders)
+  const orders = await Order.find({ user: req.user._id }) // ------> _id undefined?
+  res.json(orders);
 }); 
 
+//VERSION 2
+/* const getMyOrders = asyncHandler(async (req, res) => {
+  const id = req.user._id;
+  const o_id = new ObjectId(id);
+  const orders = await Order.find({user: o_id })
+  res.json(orders)
+}); */   
 
-//CONTROLLER PARA DEVOLVER TODAS LAS ORDENES
+
+//VERSION 3
 /* const getMyOrders = (req,res) =>{
-  Order.find()
-        .then(result => res.json(result))
+  const orders = new Order.find({ user: req.user._id })
+        .then(res.json(orders))
         .catch(error => {
             res.json({error:error, message:"Something went wrong"});
             res.sendStatus(404)
         })
-};   
- */
-
-/* Project.findById(req.params.id)
-        .then(result => res.json({data:result}))
-        .catch(error => {
-            res.json({error:error, message:"Something went wrong"});
-            res.sendStatus(404)
-        }) */
-
+};  */  
 
 
 //estoy atascado en este punto
