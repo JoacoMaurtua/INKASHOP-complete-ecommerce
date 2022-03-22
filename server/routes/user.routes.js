@@ -9,7 +9,7 @@ router.get('/users',findUsers); //Obtiene todos los users
 router.get('/user/:id',protect,findSingleUser) //Obtiene un unico user
 router.post('/register',registerUser);
 router.post('/login',authUser);
-router.get('/profile', protect, getUserProfile); //Obtiene un unico perfil(Usar este)
+router.get('/profile', protect, getUserProfile); // --> Se usar en getUserDetails(userActions.js)
 router.put('/updateProfile',protect, updateUserProfile);
 
 module.exports = router;
