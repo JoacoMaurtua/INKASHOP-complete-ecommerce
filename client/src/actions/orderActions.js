@@ -9,6 +9,9 @@ import {
   ORDER_PAY_SUCCESS,
   ORDER_PAY_FAIL,
   //ORDER_PAY_RESET,
+  ORDER_MYLIST_SUCCESS,
+  ORDER_MYLIST_FAIL,
+  ORDER_MYLIST_REQUEST,
 } from '../constants/orderConstants';
 import axios from 'axios';
 
@@ -83,10 +86,52 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
   }
 };
 
-export const payOrder = (orderId, paymentResult) => async (dispatch, getState) => { //paymentResult es un objeto que viene de PayPal
+export const payOrder =
+  (orderId, paymentResult) => async (dispatch, getState) => {
+    //paymentResult es un objeto que viene de PayPal
+    try {
+      dispatch({
+        type: ORDER_PAY_REQUEST,
+      });
+
+      const {
+        userLogin: { userInfo },
+      } = getState();
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
+
+      const { data } = await axios.put(
+        `/api/order/${orderId}/pay`, //Ruta que actualiza una nueva orden considerando los datos del paymentResult
+        paymentResult,
+        config
+      );
+
+      dispatch({
+        type: ORDER_PAY_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+      dispatch({
+        type: ORDER_PAY_FAIL,
+        payload: message,
+      });
+    }
+  };
+
+export const listMyOrders = () => async (dispatch, getState) => {
+  //paymentResult es un objeto que viene de PayPal
   try {
     dispatch({
-      type: ORDER_PAY_REQUEST,
+      type: ORDER_MYLIST_REQUEST,
     });
 
     const {
@@ -95,19 +140,17 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
 
     const config = {
       headers: {
-        'Content-Type': 'application/json',
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
 
-    const { data } = await axios.put(
-      `/api/order/${orderId}/pay`,           //Ruta que actualiza una nueva orden considerando los datos del paymentResult
-      paymentResult,
+    const { data } = await axios.get(
+      `/api/myorders`, //Ruta que actualiza una nueva orden considerando los datos del paymentResult
       config
     );
 
     dispatch({
-      type: ORDER_PAY_SUCCESS,
+      type: ORDER_MYLIST_SUCCESS,
       payload: data,
     });
   } catch (error) {
@@ -116,7 +159,7 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
         ? error.response.data.message
         : error.message;
     dispatch({
-      type: ORDER_PAY_FAIL,
+      type: ORDER_MYLIST_FAIL,
       payload: message,
     });
   }
