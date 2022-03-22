@@ -4,7 +4,7 @@ GET http://localhost:8000/api/users
 
 ### GET SINGLE USER
 
-GET http://localhost:8000/api/user/6239207967a23d1d0f2ef0cb
+GET http://localhost:8000/api/user/6239f3edfb476dc092698255
 Content-Type: application/xml
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdmMzZkYmIxMTA5ZDU1YmUyMWE1NiIsImlhdCI6MTY0MjI2NDAyMywiZXhwIjoxNjQ0ODU2MDIzfQ.H02bQ_PrgFoT_rjS_4RCNmW3o_YQTyzNslxSUISWZxA
 
@@ -27,8 +27,8 @@ Content-Type: application/json
 
 
 {
-  "email":"papo@example.com",
-  "password":"argentina4567"
+  "email":"daryl@gmail.com",
+  "password":"daryl12345678"
 }
 
 ###ADMIN LOGIN
@@ -46,7 +46,7 @@ Content-Type: application/json
 ###GET USER PROFILE
 GET http://localhost:8000/api/profile
 Content-Type: application/xml
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdmMzZkYmIxMTA5ZDU1YmUyMWE1NCIsImlhdCI6MTY0MjI2Mjc5MiwiZXhwIjoxNjQ3NDQ2NzkyfQ.U7j8ksAr7laQy4ji8AUDw13slj5vO1VFSyom3e_qBoM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzllYmQ0MDBhZDFjZGM0NTZlZjhlZCIsImlhdCI6MTY0Nzk2OTI5OSwiZXhwIjoxNjUwNTYxMjk5fQ.Pcz29bLLoGTwqHvZZpa4fuxJbHiDCHnlnwxApwuj5Qc
 
 ###PUT USER Profile
 

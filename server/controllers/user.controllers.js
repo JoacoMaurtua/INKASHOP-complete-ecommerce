@@ -14,14 +14,16 @@ const findUsers = (req, res) => {
 };
 
 //GET SINGLE USER
-const findSingleUser = (req,res) =>{
-  User.findOne({_id:req.params.id}).select('-password')
-      .then(results => res.json({data:results}))
-      .catch(error=>{
-        res.json({error:error, message:'User not found'})
-        res.sendStatus(404)
-      })
-};
+const findSingleUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id).select('-password')
+
+  if (user) {
+    res.json(user)
+  } else {
+    res.status(404)
+    throw new Error('User not found')
+  }
+})
 
 //LOGIN
 const authUser = asyncHandler(async (req, res) => {

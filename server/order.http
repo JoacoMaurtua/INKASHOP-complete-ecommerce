@@ -7,5 +7,5 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdmMzZkY
 ###GET(Traer todas las ordenes del usuario)
 GET http://localhost:8000/api/myorders
 Content-Type: application/xml
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdmMzZkYmIxMTA5ZDU1YmUyMWE1NiIsImlhdCI6MTY0MjI2NDAyMywiZXhwIjoxNjQ0ODU2MDIzfQ.H02bQ_PrgFoT_rjS_4RCNmW3o_YQTyzNslxSUISWZxA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzlmM2VkZmI0NzZkYzA5MjY5ODI1NSIsImlhdCI6MTY0Nzk2OTQzMiwiZXhwIjoxNjUwNTYxNDMyfQ.o_I02mZXCW3j4eH-t7aJyiy3E4YLUysPL6AGzgA3srA
 

@@ -95,25 +95,6 @@ const getMyOrders = asyncHandler(async (req, res) => {
   res.json(orders);
 }); 
 
-//VERSION 2
-/* const getMyOrders = asyncHandler(async (req, res) => {
-  const id = req.user._id;
-  const o_id = new ObjectId(id);
-  const orders = await Order.find({user: o_id })
-  res.json(orders)
-}); */   
-
-
-//VERSION 3
-/* const getMyOrders = (req,res) =>{
-  const orders = new Order.find({ user: req.user._id })
-        .then(res.json(orders))
-        .catch(error => {
-            res.json({error:error, message:"Something went wrong"});
-            res.sendStatus(404)
-        })
-};  */  
-
 
 //estoy atascado en este punto
 
