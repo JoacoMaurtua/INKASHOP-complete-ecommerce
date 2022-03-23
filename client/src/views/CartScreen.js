@@ -27,8 +27,8 @@ const Cartscreen = () => {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart; //Extraigo el arreglo que contrendra los objetos del carrito
 
-  console.log(qty);
-  console.log(location);
+ /*  console.log(qty);
+  console.log(location); */
 
   useEffect(() => {
     if (id) {

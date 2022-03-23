@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link,useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Table, Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
@@ -42,8 +42,8 @@ const ProfileScreen = () => {
     if (!userInfo) {
       history.push('/login');
     } else {
+      dispatch({ type: USER_UPDATE_PROFILE_RESET });
       if (!user || !user.name || success) {
-        dispatch({ type: USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails('profile')); // ---> forma la ruta
         dispatch(listMyOrders());
       } else {

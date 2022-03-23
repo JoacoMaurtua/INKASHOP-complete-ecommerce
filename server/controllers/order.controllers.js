@@ -36,15 +36,6 @@ const addOrderItems = asyncHandler(async (req, res) => {
   }
 });
 
-/*  const addOrderItems = async(req,res) =>{
-  Order.create(req.body)
-       .then(results => res.json({data:results}))
-       .catch(error=>{
-         res.json({error:error, message:'Could not create a new order'})
-         res.sendStatus(500);
-       })
- };  */
-
 
 //CONTROLLER PARA DEVOLVER UNA ORDEN
  const getSingleOrder = asyncHandler(async (req, res) => {

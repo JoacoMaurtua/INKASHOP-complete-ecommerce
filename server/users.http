@@ -27,8 +27,8 @@ Content-Type: application/json
 
 
 {
-  "email":"daryl@gmail.com",
-  "password":"daryl12345678"
+  "email":"stefano@gmail.com",
+  "password":"12345678"
 }
 
 ###ADMIN LOGIN

@@ -1,11 +1,11 @@
 ###GET(Traer una orden en particular)
 
-GET http://localhost:8000/api/order/6227804f1b20dcfec42168e6
+GET http://localhost:8000/api/order/623b77ba1ae596b50ec7031c
 Content-Type: application/xml
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdmMzZkYmIxMTA5ZDU1YmUyMWE1NiIsImlhdCI6MTY0MjI2NDAyMywiZXhwIjoxNjQ0ODU2MDIzfQ.H02bQ_PrgFoT_rjS_4RCNmW3o_YQTyzNslxSUISWZxA
 
 ###GET(Traer todas las ordenes del usuario)
 GET http://localhost:8000/api/myorders
 Content-Type: application/xml
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzlmM2VkZmI0NzZkYzA5MjY5ODI1NSIsImlhdCI6MTY0Nzk2OTQzMiwiZXhwIjoxNjUwNTYxNDMyfQ.o_I02mZXCW3j4eH-t7aJyiy3E4YLUysPL6AGzgA3srA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2I3ODFlMWFlNTk2YjUwZWM3MDMzMyIsImlhdCI6MTY0ODA2ODY2MSwiZXhwIjoxNjUwNjYwNjYxfQ.zMtUzGoslRjqSdGYEieX7IzHSUy98w1fGVMn-xA5dJ4
 
