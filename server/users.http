@@ -1,6 +1,9 @@
 ### GET USERS
 
 GET http://localhost:8000/api/users
+Content-Type: application/xml
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY0ODQ5NTY5MSwiZXhwIjoxNjUxMDg3NjkxfQ.k8n0twjp_cxJlmI_mG4ZO6mMX1EMWmQvg_eRo4bjC7w
+
 
 ### GET SINGLE USER
 
@@ -27,8 +30,8 @@ Content-Type: application/json
 
 
 {
-  "email":"stefano@gmail.com",
-  "password":"12345678"
+  "email":"admin@example.com",
+  "password":"123456"
 }
 
 ###ADMIN LOGIN
