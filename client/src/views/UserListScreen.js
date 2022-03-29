@@ -16,8 +16,8 @@ const UserListScreen = () => {
     dispatch(listUsers());
   }, [dispatch]);
 
-  const deleteHandler =()=>{
-
+  const deleteHandler =(id)=>{
+    console.log('DELETED')
   }
 
   return (
