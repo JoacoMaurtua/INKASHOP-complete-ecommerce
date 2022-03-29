@@ -17,8 +17,9 @@ const UserListScreen = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  useEffect(() => {
-    if(userInfo && userInfo.isAdmin){
+
+  useEffect(() => { 
+    if(userInfo && userInfo.isAdmin){ //esta estructura condicional es para impedir el acceso manual a la lista de usuarios
       dispatch(listUsers)
     }else{
       history.push('/login')
