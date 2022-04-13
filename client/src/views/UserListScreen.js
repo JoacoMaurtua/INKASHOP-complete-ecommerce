@@ -4,8 +4,8 @@ import { Table, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { listUsers } from '../actions/userActions';
-import axios from 'axios';//
+import { listUsers, deleteUser } from '../actions/userActions';
+//import axios from 'axios';
 
 const UserListScreen = () => {
   const dispatch = useDispatch();
@@ -18,6 +18,8 @@ const UserListScreen = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const userDelete = useSelector((state) => state.userDelete);
+  const { success:successDelete } = userDelete;
 
 
   useEffect(() => { 
@@ -26,11 +28,12 @@ const UserListScreen = () => {
     }else{
       history.push('/login')
     }
-  }, [dispatch, userInfo ,history]);
+  }, [dispatch, userInfo ,history,successDelete]);
+
 
   const deleteHandler =(id)=>{
-    console.log('DELETED')
-  }
+    dispatch(deleteUser(id)) 
+  };
 
   return (
     <>

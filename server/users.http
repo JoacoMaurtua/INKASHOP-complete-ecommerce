@@ -66,6 +66,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdmMzZkY
 
 ###DELETE SINGLE USER
 
-DELETE http://localhost:8000/api/delete/6255af8e78cdc158c67c2eff
+DELETE http://localhost:8000/api/delete/625723d0b62377703581bcbb
 Content-Type: application/xml
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY0OTg3NDQ3NiwiZXhwIjoxNjUyNDY2NDc2fQ.7gKatt7Zl6D71HjYr388i7yYPWakSIkN8_eVpeO91d4

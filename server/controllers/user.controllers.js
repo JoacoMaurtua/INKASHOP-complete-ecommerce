@@ -128,26 +128,14 @@ const getUserProfile = asyncHandler(async (req, res) => {
 
 
 //DELETE USER 
-const deleteUser = asyncHandler(async (req, res) =>{
-  const user = await User.findById(req.params.id)
-  if(user){
-    await user.remove()
-    res.json({message: 'User removed'})
-
-  }else{
-    res.status(404)
-    throw new Error('User not found')
-  }
-}); 
-
-/* const deleteUser =(req,res) =>{
+const deleteUser =(req,res) =>{
   User.deleteOne({_id:req.params.id})
   .then(results => res.json({data:results}))
     .catch(error=>{
       res.json({error:error, message:'Could not delete a user'})
       res.sendStatus(202);
     })
-}   */
+}   
 
 
 
