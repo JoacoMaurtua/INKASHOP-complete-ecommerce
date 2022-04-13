@@ -1,15 +1,15 @@
-### GET USERS
+### GET USERS -ADMIN-
 
 GET http://localhost:8000/api/users
 Content-Type: application/xml
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY0OTg3NDMxMywiZXhwIjoxNjUyNDY2MzEzfQ.JI_L9sVXVqkyRO8H7-LJh3vu7QYHXcCZ7LJwUBokUYw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY0OTg4OTgwNywiZXhwIjoxNjUyNDgxODA3fQ.B2EtRkff6KB295bliAKPNaazlczdkCJRnOI1dx3QzP4
 
 
-### GET SINGLE USER
+### GET SINGLE USER -ADMIN-
 
-GET http://localhost:8000/api/user/6239f3edfb476dc092698255
+GET http://localhost:8000/api/user/625724ac66041040557f026a
 Content-Type: application/xml
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdmMzZkYmIxMTA5ZDU1YmUyMWE1NiIsImlhdCI6MTY0MjI2NDAyMywiZXhwIjoxNjQ0ODU2MDIzfQ.H02bQ_PrgFoT_rjS_4RCNmW3o_YQTyzNslxSUISWZxA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY0OTg4OTgwNywiZXhwIjoxNjUyNDgxODA3fQ.B2EtRkff6KB295bliAKPNaazlczdkCJRnOI1dx3QzP4
 
 
 ### REGISTER
@@ -64,8 +64,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdmMzZkY
 }
 
 
-###DELETE SINGLE USER
+###DELETE SINGLE USER -ADMIN-
 
 DELETE http://localhost:8000/api/delete/625723d0b62377703581bcbb
 Content-Type: application/xml
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY0OTg3NDQ3NiwiZXhwIjoxNjUyNDY2NDc2fQ.7gKatt7Zl6D71HjYr388i7yYPWakSIkN8_eVpeO91d4
+
+
+###UPDATE USER -ADMIN-
+PUT http://localhost:8000/api/update/625724ac66041040557f026a
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY0OTg4OTgwNywiZXhwIjoxNjUyNDgxODA3fQ.B2EtRkff6KB295bliAKPNaazlczdkCJRnOI1dx3QzP4
+
+{
+  "_id": "625724ac66041040557f026a",
+  "name": "JoacoMaster",
+  "email": "joacomaurtua@gmail.com",
+  "isAdmin": false
+}

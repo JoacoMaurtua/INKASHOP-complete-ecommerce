@@ -32,7 +32,10 @@ const UserListScreen = () => {
 
 
   const deleteHandler =(id)=>{
-    dispatch(deleteUser(id)) 
+    if(window.confirm('Estas seguro de eliminar?')){
+      dispatch(deleteUser(id)) 
+    }
+  
   };
 
   return (
