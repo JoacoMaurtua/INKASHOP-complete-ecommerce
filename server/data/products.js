@@ -75,6 +75,8 @@ const products = [
     rating: 4,
     numReviews: 12,
   },
+
+
 ]
 
 module.exports = products;

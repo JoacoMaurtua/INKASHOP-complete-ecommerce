@@ -214,7 +214,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
   }
 }
 
-//RETURN THE USERS LIST
+//RETURN THE USERS LIST ONLY FOR THE ADMIN USER
 
 export const listUsers = () => async (dispatch, getState) => {
   try {

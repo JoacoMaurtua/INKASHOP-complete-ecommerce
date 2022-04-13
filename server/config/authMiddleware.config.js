@@ -32,8 +32,6 @@ const admin =(req,res,next) =>{
         res.status(401)
         throw new Error('Not authorized as an admin')
     }
-
-
 }
 
 module.exports = {protect, admin};

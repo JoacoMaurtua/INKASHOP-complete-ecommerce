@@ -116,7 +116,7 @@ export const userListReducer = (state = {users: []}, action) =>{
       }
 
     case USER_LIST_RESET:
-      return{ users:[] }
+      return { users:[] }
 
     default: 
       return state

@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { Table, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { listUsers } from '../actions/userActions';
+import axios from 'axios';//
 
 const UserListScreen = () => {
   const dispatch = useDispatch();
@@ -18,13 +19,13 @@ const UserListScreen = () => {
   const { userInfo } = userLogin;
 
 
+
   useEffect(() => { 
     if(userInfo && userInfo.isAdmin){ //esta estructura condicional es para impedir el acceso manual a la lista de usuarios
-      dispatch(listUsers)
+      dispatch(listUsers())
     }else{
       history.push('/login')
     }
-    dispatch(listUsers());
   }, [dispatch, userInfo ,history]);
 
   const deleteHandler =(id)=>{

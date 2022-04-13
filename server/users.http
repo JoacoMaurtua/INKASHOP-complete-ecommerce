@@ -30,8 +30,8 @@ Content-Type: application/json
 
 
 {
-  "email":"admin@example.com",
-  "password":"123456"
+  "email":"papo@example.com",
+  "password":"argentina4567"
 }
 
 ###ADMIN LOGIN

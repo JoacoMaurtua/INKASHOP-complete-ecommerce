@@ -23,7 +23,7 @@ const findSingleUser = asyncHandler(async (req, res) => {
     res.status(404)
     throw new Error('User not found')
   }
-})
+});
 
 //LOGIN
 const authUser = asyncHandler(async (req, res) => {
@@ -97,7 +97,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
     res.status(404)
     throw new Error('User not found')
   }
-})
+});
 
 //UPDATE USER PROFILE
 
@@ -124,9 +124,24 @@ const getUserProfile = asyncHandler(async (req, res) => {
     res.status(404)
     throw new Error('User not found')
   }
-}) 
+}); 
+
+
+//DELETE USER 
+const deleteUser = asyncHandler(async (req, res) =>{
+  const user = await User.findById(req.params.id)
+  if(user){
+    await user.remove()
+    res.json({message: 'User removed'})
+
+  }else{
+    res.status(404)
+    throw new Error('User not found')
+  }
+});
 
 
 
 
-module.exports = { findUsers, authUser, getUserProfile, registerUser, updateUserProfile,findSingleUser };
+
+module.exports = { findUsers, authUser, getUserProfile, registerUser, updateUserProfile,findSingleUser,deleteUser };
