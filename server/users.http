@@ -2,7 +2,7 @@
 
 GET http://localhost:8000/api/users
 Content-Type: application/xml
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY0ODQ5NTY5MSwiZXhwIjoxNjUxMDg3NjkxfQ.k8n0twjp_cxJlmI_mG4ZO6mMX1EMWmQvg_eRo4bjC7w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY0OTg3NDMxMywiZXhwIjoxNjUyNDY2MzEzfQ.JI_L9sVXVqkyRO8H7-LJh3vu7QYHXcCZ7LJwUBokUYw
 
 
 ### GET SINGLE USER
@@ -41,7 +41,7 @@ Content-Type: application/json
 
 {
   "email":"admin@example.com",
-  "password":"123456aea"
+  "password":"123456"
 }
 
 
@@ -62,3 +62,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdmMzZkY
   "email":"walls@example.com",
   "password":"spain45678"
 }
+
+
+###DELETE SINGLE USER
+
+DELETE http://localhost:8000/api/delete/6255af8e78cdc158c67c2eff
+Content-Type: application/xml
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY0OTg3NDQ3NiwiZXhwIjoxNjUyNDY2NDc2fQ.7gKatt7Zl6D71HjYr388i7yYPWakSIkN8_eVpeO91d4
