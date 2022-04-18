@@ -1,58 +1,58 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useHistory, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { getUserDetails } from '../actions/userActions';
 import FormContainer from '../components/FormContainer';
+import { getUserDetails } from '../actions/userActions';
 
 const UserEditScreen = () => {
-  const location = useLocation();
-
-  const { id } = useParams();
 
   const history = useHistory();
 
-  const [state, setState] = useState({
-    name: '',
-    email: '',
-  });
-
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  const { name, email } = state;
+  const { id } = useParams();
 
   const dispatch = useDispatch();
 
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
 
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const {
+    loading: loadingUpdate,
+    error: errorUpdate,
+    success: successUpdate,
+  } = userUpdateProfile;
+
   useEffect(() => {
-    /* if(!user.name || user._id !== id){
+    if (!user.name || user._id !== id) {
+      dispatch(getUserDetails(id));
+    } else {
+      setName(user.name);
+      setEmail(user.email);
+      setIsAdmin(user.isAdmin);
+    }
+  }, [dispatch, history, id, user, successUpdate]);
 
-    } */
-  }, []);
-
-  const submitHandler = (event) => {
-    event.preventDefault();
-    //DISPATCH REGISTER
-  };
-
-  const onChangeHandler = (event) => {
-    const { name, value } = event.target;
-    setState({
-      ...state,
-      [name]: value,
-    });
+  const submitHandler = (e) => {
+    e.preventDefault();
   };
 
   return (
     <>
-      <Link to="/admin/userList" className="btn btn-light my-3"></Link>
-
+      <Link to="/admin/userlist" className="btn btn-light my-3">
+        Go Back
+      </Link>
       <FormContainer>
         <h1>Edit User</h1>
+        {loadingUpdate && <Loader />}
+        {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
         {loading ? (
           <Loader />
         ) : error ? (
@@ -60,32 +60,30 @@ const UserEditScreen = () => {
         ) : (
           <Form onSubmit={submitHandler}>
             <Form.Group controlId="name">
-              <Form.Label>Name: </Form.Label>
+              <Form.Label>Name</Form.Label>
               <Form.Control
-                style={{ marginBottom: '1rem' }}
+                style={{marginBottom:"1rem"}}
                 type="name"
-                placeholder="Enter your name"
-                name="name"
+                placeholder="Enter name"
                 value={name}
-                onChange={onChangeHandler}
+                onChange={(e) => setName(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
             <Form.Group controlId="email">
-              <Form.Label>Email Address: </Form.Label>
+              <Form.Label>Email Address</Form.Label>
               <Form.Control
-                style={{ marginBottom: '1rem' }}
+                style={{marginBottom:"1rem"}}
                 type="email"
-                placeholder="Enter your email"
-                name="email"
+                placeholder="Enter email"
                 value={email}
-                onChange={onChangeHandler}
+                onChange={(e) => setEmail(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
             <Form.Group controlId="isadmin">
               <Form.Check
-                style={{ marginBottom: '1rem' }}
+                style={{marginBottom:"1rem"}}
                 type="checkbox"
                 label="Is Admin"
                 checked={isAdmin}

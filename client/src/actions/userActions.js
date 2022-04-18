@@ -243,7 +243,7 @@ export const listUsers = () => async (dispatch, getState) => {
     })
 
     
-    localStorage.setItem('userInfo',JSON.stringify(data))
+    //localStorage.setItem('userInfo',JSON.stringify(data))
     
   } catch (error) {
     const message =
@@ -277,11 +277,11 @@ export const deleteUser = (id) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.delete(`/api/delete/${id}`, config)
+    await axios.delete(`/api/delete/${id}`, config)
 
     dispatch({type: USER_DELETE_SUCCESS})
       
-    localStorage.setItem('userInfo',JSON.stringify(data))
+    //localStorage.setItem('userInfo',JSON.stringify(data))
     
   } catch (error) {
     const message =

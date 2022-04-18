@@ -23,8 +23,9 @@ const ProfileScreen = () => {
 
   const dispatch = useDispatch();
 
-  const userDetails = useSelector((state) => state.userDetails);
-  const { loading, error, user } = userDetails;
+  //SOLUCION ALTERNATIVA
+  const userDetails  = useSelector((state) => state.userDetails );
+  const { loading, error, user } = userDetails ;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -44,7 +45,7 @@ const ProfileScreen = () => {
     } else {
       dispatch({ type: USER_UPDATE_PROFILE_RESET });
       if (!user || !user.name || success) {
-        dispatch(getUserDetails('profile')); // ---> forma la ruta
+        dispatch(getUserDetails('user/profile')); // ---> forma la ruta
         dispatch(listMyOrders());
       } else {
         setState({

@@ -15,10 +15,10 @@ const {
 //Rutas:
 
 router.get('/users', protect, admin, findUsers); //Obtiene todos los users
-router.get('/user/:id', protect, admin,findSingleUser); //Obtiene un unico user
+router.get('/:id', protect, admin,findSingleUser); //Obtiene un unico user
 router.post('/register', registerUser);
 router.post('/login', authUser);
-router.get('/profile', protect, getUserProfile); // --> Se usar en getUserDetails(userActions.js)
+router.get('/user/profile', protect, getUserProfile); //Obtiene los datos del usuario que esta usando la pagina 
 router.put('/updateProfile', protect, updateUserProfile);
 router.delete('/delete/:id',protect,admin,deleteUser); //eliminar un usuario(solo para admin)
 router.put('/update/:id',protect,admin,updateUser); //que el admin actualice un perfil

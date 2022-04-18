@@ -7,9 +7,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0M
 
 ### GET SINGLE USER -ADMIN-
 
-GET http://localhost:8000/api/user/625724ac66041040557f026a
+GET http://localhost:8000/api/625724ac66041040557f026a
 Content-Type: application/xml
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY0OTg4OTgwNywiZXhwIjoxNjUyNDgxODA3fQ.B2EtRkff6KB295bliAKPNaazlczdkCJRnOI1dx3QzP4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY1MDMxMjc2MiwiZXhwIjoxNjUyOTA0NzYyfQ.odPyBqztF7f6O2EE_ZZniKyyAMx5X5ZliFNDzy0v49I
 
 
 ### REGISTER
@@ -47,9 +47,9 @@ Content-Type: application/json
 
 
 ###GET USER PROFILE
-GET http://localhost:8000/api/profile
+GET http://localhost:8000/api/user/profile
 Content-Type: application/xml
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzllYmQ0MDBhZDFjZGM0NTZlZjhlZCIsImlhdCI6MTY0Nzk2OTI5OSwiZXhwIjoxNjUwNTYxMjk5fQ.Pcz29bLLoGTwqHvZZpa4fuxJbHiDCHnlnwxApwuj5Qc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY1MDMxMjk0NSwiZXhwIjoxNjUyOTA0OTQ1fQ.EmlOAE9wIW5hJf_-RyrLZ0AaP65qHnHFOm8s6GWOSYQ
 
 ###PUT USER Profile
 
