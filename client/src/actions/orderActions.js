@@ -15,6 +15,8 @@ import {
 } from '../constants/orderConstants';
 import axios from 'axios';
 
+import { logout } from './userActions'
+
 export const createOrder = (order) => async (dispatch, getState) => {
   //objeto gigante con toda la info de lo que estas comprando
   try {
@@ -128,40 +130,39 @@ export const payOrder =
     }
   };
 
-export const listMyOrders = () => async (dispatch, getState) => {
-  //paymentResult es un objeto que viene de PayPal
-  try {
-    dispatch({
-      type: ORDER_MYLIST_REQUEST,
-    });
-
-    const {
-      userLogin: { userInfo },
-    } = getState();
-
-    const config = {
-      headers: {
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
-
-    const { data } = await axios.get(
-      `/api/myorders`, //Ruta que actualiza una nueva orden considerando los datos del paymentResult
-      config
-    );
-
-    dispatch({
-      type: ORDER_MYLIST_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
-    dispatch({
-      type: ORDER_MYLIST_FAIL,
-      payload: message,
-    });
-  }
-};
+  export const listMyOrders = () => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: ORDER_MYLIST_REQUEST,
+      })
+  
+      const {
+        userLogin: { userInfo },
+      } = getState()
+  
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      }
+  
+      const { data } = await axios.get(`/api/order/myorders`, config)
+  
+      dispatch({
+        type: ORDER_MYLIST_SUCCESS,
+        payload: data,
+      })
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      if (message === 'Not authorized, token failed') {
+        dispatch(logout())
+      }
+      dispatch({
+        type: ORDER_MYLIST_FAIL,
+        payload: message,
+      })
+    }
+  };

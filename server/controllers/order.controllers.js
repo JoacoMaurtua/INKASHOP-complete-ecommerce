@@ -82,9 +82,9 @@ const updateOrderToPaid = asyncHandler(async (req, res) => {
 
 //VERSION 1
 const getMyOrders = asyncHandler(async (req, res) => {
-  const orders = await Order.find({ user: req.user._id }) // ------> _id undefined?
-  res.json(orders);
-}); 
+  const orders = await Order.find({ user: req.user._id })
+  res.json(orders)
+})
 
 
 //estoy atascado en este punto

@@ -1,11 +1,10 @@
 ###GET(Traer una orden en particular)
-
-GET http://localhost:8000/api/order/623b77ba1ae596b50ec7031c
+GET http://localhost:8000/api/order/625f07ffdba54c7a4e65a7aa
 Content-Type: application/xml
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxOTdmMzZkYmIxMTA5ZDU1YmUyMWE1NiIsImlhdCI6MTY0MjI2NDAyMywiZXhwIjoxNjQ0ODU2MDIzfQ.H02bQ_PrgFoT_rjS_4RCNmW3o_YQTyzNslxSUISWZxA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTcyNGFjNjYwNDEwNDA1NTdmMDI2YSIsImlhdCI6MTY1MDM5MzgwNSwiZXhwIjoxNjUyOTg1ODA1fQ.eOjY__v6v2ppzMaoq4XJL6XoNuKme4olvP4cETEewOE
 
 ###GET(Traer todas las ordenes del usuario)
-GET http://localhost:8000/api/myorders
+GET http://localhost:8000/api/order/myorders
 Content-Type: application/xml
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyM2I3ODFlMWFlNTk2YjUwZWM3MDMzMyIsImlhdCI6MTY0ODA2ODY2MSwiZXhwIjoxNjUwNjYwNjYxfQ.zMtUzGoslRjqSdGYEieX7IzHSUy98w1fGVMn-xA5dJ4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNTcyNGFjNjYwNDEwNDA1NTdmMDI2YSIsImlhdCI6MTY1MDM5MzgwNSwiZXhwIjoxNjUyOTg1ODA1fQ.eOjY__v6v2ppzMaoq4XJL6XoNuKme4olvP4cETEewOE
 
