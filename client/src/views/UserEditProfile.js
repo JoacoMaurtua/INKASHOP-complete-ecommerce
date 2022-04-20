@@ -5,10 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import FormContainer from '../components/FormContainer';
-import { getUserDetails } from '../actions/userActions';
+import { getUserDetails, updateUser } from '../actions/userActions';
+import { USER_UPDATE_RESET } from '../constants/userConstants';
 
 const UserEditScreen = () => {
-
   const history = useHistory();
 
   const { id } = useParams();
@@ -19,29 +19,42 @@ const UserEditScreen = () => {
   const [email, setEmail] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
 
-  
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
 
-  const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
+  const userUpdate = useSelector((state) => state.userUpdate);
   const {
     loading: loadingUpdate,
     error: errorUpdate,
     success: successUpdate,
-  } = userUpdateProfile;
+  } = userUpdate;
 
   useEffect(() => {
-    if (!user.name || user._id !== id) {
-      dispatch(getUserDetails(id));
+    if (successUpdate) {
+      dispatch({ type: USER_UPDATE_RESET });
+      history.push('/admin/userlist');
     } else {
-      setName(user.name);
-      setEmail(user.email);
-      setIsAdmin(user.isAdmin);
+      //si no tenemos exito la actualizacion no se dara
+      if (!user.name || user._id !== id) {
+        dispatch(getUserDetails(id));
+      } else {
+        setName(user.name);
+        setEmail(user.email);
+        setIsAdmin(user.isAdmin);
+      }
     }
   }, [dispatch, history, id, user, successUpdate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(
+      updateUser({
+        _id: id,
+        name,
+        email,
+        isAdmin,
+      })
+    );
   };
 
   return (
@@ -62,7 +75,7 @@ const UserEditScreen = () => {
             <Form.Group controlId="name">
               <Form.Label>Name</Form.Label>
               <Form.Control
-                style={{marginBottom:"1rem"}}
+                style={{ marginBottom: '1rem' }}
                 type="name"
                 placeholder="Enter name"
                 value={name}
@@ -73,7 +86,7 @@ const UserEditScreen = () => {
             <Form.Group controlId="email">
               <Form.Label>Email Address</Form.Label>
               <Form.Control
-                style={{marginBottom:"1rem"}}
+                style={{ marginBottom: '1rem' }}
                 type="email"
                 placeholder="Enter email"
                 value={email}
@@ -83,7 +96,7 @@ const UserEditScreen = () => {
 
             <Form.Group controlId="isadmin">
               <Form.Check
-                style={{marginBottom:"1rem"}}
+                style={{ marginBottom: '1rem' }}
                 type="checkbox"
                 label="Is Admin"
                 checked={isAdmin}
