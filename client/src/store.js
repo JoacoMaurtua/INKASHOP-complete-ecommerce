@@ -10,10 +10,10 @@ import {
   userLoginReducer,
   userRegisterReducer,
   userDetailsReducer,
-  userProfileDetailsReducer,
   userUpdateProfileReducer,
   userListReducer,
   userDeleteReducer,
+  userUpdateReducer,
 } from './reducers/userReducers';
 import {
   orderCreateReducer,
@@ -31,9 +31,10 @@ const reducer = combineReducers({
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userDetails: userDetailsReducer, 
-  userUpdateProfile: userUpdateProfileReducer,
+  userUpdateProfile: userUpdateProfileReducer, //el user actualiza su propia info
   userList: userListReducer,
   userDelete: userDeleteReducer,
+  userUpdate: userUpdateReducer, //el admin actualiza la info del user
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
@@ -41,8 +42,8 @@ const reducer = combineReducers({
 });
 
 //Almacenar la data del carrito de compras en el local storage
-const cartItemsFromStorage = localStorage.getItem('cartItems')
-  ? JSON.parse(localStorage.getItem('cartItems'))
+const cartItemsFromStorage = localStorage.getItem('cartItems') //si existe cartItems en LocalStorage
+  ? JSON.parse(localStorage.getItem('cartItems'))//conviertde de JSON a js
   : [];
 
 //Almacenar la data del usuario en el local storage
