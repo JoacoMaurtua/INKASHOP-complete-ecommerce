@@ -4,15 +4,16 @@ import { Table, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { listProducts } from '../actions/productActions';
+import { listProducts,deleteProduct } from '../actions/productActions';
 //import axios from 'axios';
 
 const ProductListScreen = () => {
+
+  const {id} = useParams();
+
   const dispatch = useDispatch();
 
   const history = useHistory();
-
-  const { id } = useParams();
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
