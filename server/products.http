@@ -4,5 +4,8 @@ GET http://localhost:8000/api/products
 ### Buscar un solo producto
 GET http://localhost:8000/api/product/6238df04309ca04e444ec711
 
+### Eliminar un producto -ADMIN-
 
-
+DELETE http://localhost:8000/api/product/delete/6238df04309ca04e444ec716
+Content-Type: application/xml
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY1MDMxMjc2MiwiZXhwIjoxNjUyOTA0NzYyfQ.odPyBqztF7f6O2EE_ZZniKyyAMx5X5ZliFNDzy0v49I
