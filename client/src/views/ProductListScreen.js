@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useParams, useHistory } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import { Table, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
@@ -9,7 +9,7 @@ import { listProducts,deleteProduct } from '../actions/productActions';
 
 const ProductListScreen = () => {
 
-  const {id} = useParams();
+  const { id } = useParams();
 
   const dispatch = useDispatch();
 
@@ -17,6 +17,9 @@ const ProductListScreen = () => {
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
+
+  const productDelete = useSelector((state) => state.productDelete);
+  const { loading:loadingDelete, error:errorDelete, success:successDelete } = productDelete;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -28,11 +31,11 @@ const ProductListScreen = () => {
     } else {
       history.push('/login');
     }
-  }, [dispatch, userInfo, history]);
+  }, [dispatch, userInfo, history,successDelete]);
 
   const deleteHandler = (id) => {
     if (window.confirm('Estas seguro de eliminar?')) {
-      //DELETE PRODUCTS
+      dispatch(deleteProduct(id))
     }
   };
 
@@ -53,6 +56,8 @@ const ProductListScreen = () => {
           </Button>
         </Col>
       </Row>
+      {loadingDelete && <Loader />}
+      {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
       {loading ? (
         <Loader />
       ) : error ? (
