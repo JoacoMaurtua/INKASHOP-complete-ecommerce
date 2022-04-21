@@ -47,7 +47,7 @@ const ProductListScreen = () => {
         </Col>
 
         <Col className="text-right">
-          <Button className="my-3" onClick={createProductHandler} style={{marginLeft:'17rem'}}>
+        <Button className="my-3" onClick={createProductHandler} style={{marginLeft:'30rem'}}>
             <i className="fas fa-plus"></i>Create Product
           </Button>
         </Col>
