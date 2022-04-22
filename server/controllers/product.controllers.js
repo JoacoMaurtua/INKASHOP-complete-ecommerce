@@ -42,6 +42,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
 //Crear un producto -ADMIN-
 const createProduct = asyncHandler(async (req, res) => {
+  //Prueba
   const product = new Product({
     name: 'Sample name',
     price:0,

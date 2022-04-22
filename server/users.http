@@ -2,7 +2,7 @@
 
 GET http://localhost:8000/api/users
 Content-Type: application/xml
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY0OTg4OTgwNywiZXhwIjoxNjUyNDgxODA3fQ.B2EtRkff6KB295bliAKPNaazlczdkCJRnOI1dx3QzP4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjJjODdkODNlMjc1NjA2MGQyZTE1MSIsImlhdCI6MTY1MDY0NTAxNywiZXhwIjoxNjUzMjM3MDE3fQ.MC8kNf6_7EEaF3Xa_lxGkW2Q6Zgqu5rdXXHkX47u04M
 
 
 ### GET SINGLE USER -ADMIN-
