@@ -4,11 +4,14 @@ import { Table, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import { listProducts,deleteProduct } from '../actions/productActions';
-//import axios from 'axios';
+import {
+  listProducts,
+  deleteProduct,
+  createProduct,
+} from '../actions/productActions';
+import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
 
 const ProductListScreen = () => {
-
   const { id } = useParams();
   console.log(id);
 
@@ -20,31 +23,54 @@ const ProductListScreen = () => {
   const { loading, error, products } = productList;
 
   const productDelete = useSelector((state) => state.productDelete);
-  const { loading:loadingDelete, error:errorDelete, success:successDelete } = productDelete;
+  const {
+    loading: loadingDelete,
+    error: errorDelete,
+    success: successDelete,
+  } = productDelete;
+
+  const productCreate = useSelector((state) => state.productCreate);
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    product: createdProduct,
+  } = productCreate;
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      //esta estructura condicional es para impedir el acceso manual a la lista de usuarios
-      dispatch(listProducts());
-    } else {
+    dispatch({ type: PRODUCT_CREATE_RESET });
+    //esta estructura condicional es para impedir el acceso manual a la lista de productos
+    if (!userInfo.isAdmin) {
       history.push('/login');
     }
-  }, [dispatch, userInfo, history,successDelete]);
+    if (successCreate) {
+      history.push(`/admin/product/${createdProduct._id}/edit`);
+    } else {
+      dispatch(listProducts());
+    }
+  }, [
+    dispatch,
+    userInfo,
+    history,
+    successDelete,
+    successCreate,
+    createdProduct,
+  ]);
 
   const deleteHandler = (id) => {
     if (window.confirm('Estas seguro de eliminar?')) {
-      dispatch(deleteProduct(id))
+      dispatch(deleteProduct(id));
     }
   };
 
   const createProductHandler = () => {
-
+    dispatch(createProduct());
   };
 
-  return (
+  return ( 
     <>
       <Row className="align-items-center">
         <Col>
@@ -52,13 +78,20 @@ const ProductListScreen = () => {
         </Col>
 
         <Col className="text-right">
-        <Button className="my-3" onClick={createProductHandler} style={{marginLeft:'30rem'}}>
+          <Button
+            className="my-3"
+            onClick={createProductHandler}
+            style={{ marginLeft: '30rem' }}
+          >
             <i className="fas fa-plus"></i>Create Product
           </Button>
         </Col>
       </Row>
-      {loadingDelete && <Loader />}
-      {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
+      {/* Mejorar esta parte para que no haya dos loaders */}
+      {loadingDelete && <Loader /> }
+      {errorDelete && <Message variant="danger">{errorDelete}</Message>}
+      {loadingCreate && <Loader />}
+      {errorCreate && <Message variant="danger">{errorCreate}</Message>}
       {loading ? (
         <Loader />
       ) : error ? (
