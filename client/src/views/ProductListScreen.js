@@ -10,6 +10,7 @@ import { listProducts,deleteProduct } from '../actions/productActions';
 const ProductListScreen = () => {
 
   const { id } = useParams();
+  console.log(id);
 
   const dispatch = useDispatch();
 

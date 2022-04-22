@@ -8,6 +8,10 @@ import {
   PRODUCT_DELETE_REQUEST,
   PRODUCT_DELETE_SUCCESS,
   PRODUCT_DELETE_FAIL,
+  PRODUCT_CREATE_REQUEST,
+  PRODUCT_CREATE_SUCCESS,
+  PRODUCT_CREATE_FAIL,
+  PRODUCT_CREATE_RESET,
 } from '../constants/productConstants';
 
 
@@ -35,16 +39,16 @@ export const productListDetailsReducer = (
 ) => {
   switch (action.type) {
     case PRODUCT_DETAILS_REQUEST:
-      return { loading: true, ...state }; //retorna un objeto nuevo con el estado(array) aun vacio
+      return { loading: true, ...state }; 
 
     case PRODUCT_DETAILS_SUCCESS:
-      return { loading: false, product: action.payload }; //retorna un objeto nuevo con el estado(array) lleno con los datos traidos por axios de la DB
+      return { loading: false, product: action.payload }; 
 
     case PRODUCT_DETAILS_FAIL:
-      return { loading: false, error: action.payload }; //retorna un objeto nuevo que contiene el error definido en productActions.js
+      return { loading: false, error: action.payload }; 
 
     default:
-      return state; //retorna el mismo estado en caso no se envie una accion valida
+      return state; 
   }
 };
 
@@ -55,15 +59,36 @@ export const productDeleteReducer = (
 ) => {
   switch (action.type) {
     case PRODUCT_DELETE_REQUEST:
-      return { loading: true }; //retorna un objeto nuevo con el estado(array) aun vacio
+      return { loading: true }; 
 
     case PRODUCT_DELETE_SUCCESS:
-      return { loading: false, success:true}; //retorna un objeto nuevo con el estado(array) lleno con los datos traidos por axios de la DB
+      return { loading: false, success:true}; 
 
     case PRODUCT_DELETE_FAIL:
-      return { loading: false, error: action.payload }; //retorna un objeto nuevo que contiene el error definido en productActions.js
+      return { loading: false, error: action.payload }; 
 
     default:
-      return state; //retorna el mismo estado en caso no se envie una accion valida
+      return state; 
+  }
+};
+
+
+export const productCreateReducer = (state = {},  action) => {
+  
+  switch (action.type) {
+    case PRODUCT_CREATE_REQUEST:
+      return { loading: true }; 
+
+    case PRODUCT_CREATE_SUCCESS:
+      return { loading: false, success:true, product:action.payload };  
+
+    case PRODUCT_CREATE_FAIL:
+      return { loading: false, error: action.payload }; 
+
+    case PRODUCT_CREATE_RESET:
+      return{}
+       
+    default:
+      return state; 
   }
 };
