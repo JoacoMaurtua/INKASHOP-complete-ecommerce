@@ -1,7 +1,9 @@
 ### Buscar todos los productos
+
 GET http://localhost:8000/api/products
 
 ### Buscar un solo producto
+
 GET http://localhost:8000/api/product/6238df04309ca04e444ec711
 
 ### Eliminar un producto -ADMIN-
