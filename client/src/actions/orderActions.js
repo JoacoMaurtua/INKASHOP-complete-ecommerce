@@ -12,6 +12,9 @@ import {
   ORDER_MYLIST_SUCCESS,
   ORDER_MYLIST_FAIL,
   ORDER_MYLIST_REQUEST,
+  ORDER_LIST_SUCCESS,
+  ORDER_LIST_FAIL,
+  ORDER_LIST_REQUEST,
 } from '../constants/orderConstants';
 import axios from 'axios';
 
@@ -162,6 +165,44 @@ export const payOrder =
       }
       dispatch({
         type: ORDER_MYLIST_FAIL,
+        payload: message,
+      })
+    }
+  };
+
+  //ADMIN
+  export const listOrders = () => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: ORDER_LIST_REQUEST,
+      })
+  
+      const {
+        userLogin: { userInfo },
+      } = getState()
+  
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      }
+  
+      const { data } = await axios.get(`/api/order/allorders`, config)
+  
+      dispatch({
+        type: ORDER_LIST_SUCCESS,
+        payload: data,
+      })
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message
+      if (message === 'Not authorized, token failed') {
+        dispatch(logout())
+      }
+      dispatch({
+        type: ORDER_LIST_FAIL,
         payload: message,
       })
     }
