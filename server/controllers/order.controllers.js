@@ -87,9 +87,16 @@ const getMyOrders = asyncHandler(async (req, res) => {
 })
 
 
+//CONTROLER PARA DEVOLVER TODAS LAS ORDENES -ADMIN-
+const getOrders = asyncHandler(async (req, res) => {
+  const orders = await Order.find({}).populate('user','id name')
+  res.json(orders)
+})
+
+
 //estoy atascado en este punto
 
-module.exports = { addOrderItems, getSingleOrder,updateOrderToPaid, getMyOrders };
+module.exports = { addOrderItems, getSingleOrder,updateOrderToPaid, getMyOrders, getOrders };
 
 
 
