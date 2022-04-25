@@ -38,8 +38,11 @@ app.get('/api/config/paypal', (req, res) => //PayPal
 );
 
 //configuracion para volver un directorio estatico
-const __dirname = path.resolve()
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
+//const __dirname = path.resolve() //---> ya esta declarada en global namespace
+const __beStatic = path.resolve();
+
+app.use('/uploads', express.static(path.join(__beStatic ,'/uploads'))) 
+    
 
 app.listen(PORT,()=>{
   console.log(`1: Servidor corriendo en ${process.env.NODE_ENV} en el puerto ${PORT}`)
