@@ -7,6 +7,7 @@ const app = express();
 
 const PORT = process.env.PORT;
  
+const path = require('path');
 
 /* app.get('/',(req,res)=>{
   res.send('API is running...')
@@ -30,9 +31,15 @@ app.use('/api', require('./routes/user.routes'));
 
 app.use('/api', require('./routes/order.routes'));
 
+app.use('/api', require('./routes/uploads.routes'));
+
 app.get('/api/config/paypal', (req, res) => //PayPal
   res.send(process.env.PAYPAL_CLIENT_ID)
-)
+);
+
+//configuracion para volver un directorio estatico
+const __dirname = path.resolve()
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 app.listen(PORT,()=>{
   console.log(`1: Servidor corriendo en ${process.env.NODE_ENV} en el puerto ${PORT}`)
