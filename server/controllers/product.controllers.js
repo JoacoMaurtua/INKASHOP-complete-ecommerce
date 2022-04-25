@@ -41,7 +41,7 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
 
 //Crear un producto -ADMIN-
-const createProduct = asyncHandler(async (req, res) => {
+const createProduct = asyncHandler(async (req, res) => { //(CAMBIAR ESTE CONTROLLER)
   //Prueba
   const product = new Product({
     name: 'Sample name',
@@ -59,25 +59,33 @@ const createProduct = asyncHandler(async (req, res) => {
   res.status(201).json(createdProduct)
 });
 
-/* 
-  VERISON ALTERNATIVA:
-  const createProduct = async(req,res) =>{
-  Product.create(req.body)
-      .then(results => res.json({data:results}))
-      .catch(error=>{
-        res.json({error:error, message:'Could not create a task'})
-        res.sendStatus(500);
-      })
-};
-*/
+
+  //VERISON ALTERNATIVA:
+/* const createProduct = async(req,res) =>{
+Product.create(req.body)
+    .then(results => res.json({data:results}))
+    .catch(error=>{
+      res.json({error:error, message:'Could not create a task'})
+      res.sendStatus(500);
+    })
+}; */
+
 
 //Actualizar un producto -ADMIN-
-const updateProduct = asyncHandler(async (req, res) => {
-  const {name,price,description,image,brand,category,countInStock} = req.body
+const updateProduct = asyncHandler(async (req, res) => { //(MEJORAR ESTE CONTROLLER)
+  const {
+    name,
+    price,
+    description,
+    image,
+    brand,
+    category,
+    countInStock,
+  } = req.body
 
   const product = await Product.findById(req.params.id)
 
-  if(product){
+  if (product) {
     product.name = name
     product.price = price
     product.description = description
@@ -88,13 +96,11 @@ const updateProduct = asyncHandler(async (req, res) => {
 
     const updatedProduct = await product.save()
     res.json(updatedProduct)
-
-  }else{
+  } else {
     res.status(404)
     throw new Error('Product not found')
   }
-
-});
+})
 
 
 module.exports = {findProduct,findSingleProduct,deleteProduct,createProduct,updateProduct};
