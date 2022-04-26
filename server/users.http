@@ -7,9 +7,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjJjODdkO
 
 ### GET SINGLE USER -ADMIN-
 
-GET http://localhost:8000/api/625724ac66041040557f026a
+GET http://localhost:8000/api/6262c87d83e2756060d2e151
 Content-Type: application/xml
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMzhkZjA0MzA5Y2EwNGU0NDRlYzcwZSIsImlhdCI6MTY1MDMxMjc2MiwiZXhwIjoxNjUyOTA0NzYyfQ.odPyBqztF7f6O2EE_ZZniKyyAMx5X5ZliFNDzy0v49I
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjJjODdkODNlMjc1NjA2MGQyZTE1MSIsImlhdCI6MTY1MDk5MTQ0MywiZXhwIjoxNjUzNTgzNDQzfQ.Xmkz2crl1NkBUXJOu-eBWCOp6GMvlr20mGY5tzFXw8s
 
 
 ### REGISTER

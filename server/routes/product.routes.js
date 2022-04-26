@@ -6,6 +6,7 @@ const {
   deleteProduct,
   createProduct,
   updateProduct,
+  createReview,
 } = require('../controllers/product.controllers');
 
 const { protect, admin } = require('../config/authMiddleware.config');
@@ -24,5 +25,7 @@ router.delete('/product/delete/:id',protect,admin,deleteProduct); //eliminar un 
 router.post('/product/create',protect,admin,createProduct); //crear un producto
 
 router.put('/product/update/:id',protect,admin,updateProduct); //actualizar un producto
+
+router.post('/product/:id/review',protect,createReview);//crear un comentario
 
 module.exports = router;

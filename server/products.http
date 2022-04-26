@@ -36,3 +36,15 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjJjODdkO
     "countInStock": "2",
     "description": "Nike 90s clasics shoes"
 }
+
+
+### Crear un review
+POST http://localhost:8000/api/product/6262c87d83e2756060d2e156/review
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjJjODdkODNlMjc1NjA2MGQyZTE1MSIsImlhdCI6MTY1MDk5MTQ0MywiZXhwIjoxNjUzNTgzNDQzfQ.Xmkz2crl1NkBUXJOu-eBWCOp6GMvlr20mGY5tzFXw8s
+
+
+{
+    "rating":"5",
+    "comment":"Excelente servicio y gran calidad en el producto!"
+}
