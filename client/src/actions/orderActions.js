@@ -229,7 +229,7 @@ export const payOrder = (orderId, paymentResult) => async (dispatch, getState) =
         },
       };
 
-      const { data } = await axios.put(`/api/order/${order._id}/deliver`, config );//Ruta que actualiza una nueva orden considerando los datos del paymentResult
+      const { data } = await axios.put(`/api/order/${order._id}/deliver`,{}, config );//Ruta que actualiza una nueva orden considerando los datos del paymentResult
       
       dispatch({
         type: ORDER_DELIVER_SUCCESS,

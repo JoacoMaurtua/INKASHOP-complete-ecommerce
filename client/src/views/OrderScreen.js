@@ -1,95 +1,103 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import { PayPalButton } from 'react-paypal-button-v2'
-import { Link, useParams, useHistory } from 'react-router-dom'
-import { Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
-import Message from '../components/Message'
-import Loader from '../components/Loader'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { PayPalButton } from 'react-paypal-button-v2';
+import { Link, useParams, useHistory } from 'react-router-dom';
+import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import Message from '../components/Message';
+import Loader from '../components/Loader';
 import {
   getOrderDetails,
   payOrder,
-} from '../actions/orderActions'
+  deliverOrder,
+} from '../actions/orderActions';
 import {
   ORDER_PAY_RESET,
-} from '../constants/orderConstants'
+  ORDER_DELIVER_RESET,
+} from '../constants/orderConstants';
 
 const OrderScreen = () => {
-  const {id} = useParams();
+  const { id } = useParams();
 
   const history = useHistory();
 
-  const [sdkReady, setSdkReady] = useState(false)
+  const [sdkReady, setSdkReady] = useState(false);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const orderDetails = useSelector((state) => state.orderDetails)
-  const { order, loading, error } = orderDetails
+  const orderDetails = useSelector((state) => state.orderDetails);
+  const { order, loading, error } = orderDetails;
 
-  const orderPay = useSelector((state) => state.orderPay)
-  const { loading: loadingPay, success: successPay } = orderPay
+  const orderPay = useSelector((state) => state.orderPay);
+  const { loading: loadingPay, success: successPay } = orderPay;
 
+  const orderDeliver = useSelector((state) => state.orderDeliver);
+  const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
 
-  const userLogin = useSelector((state) => state.userLogin)
-  const { userInfo } = userLogin
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
 
   if (!loading) {
-    
     const addDecimals = (num) => {
-      return (Math.round(num * 100) / 100).toFixed(2)
-    }
+      return (Math.round(num * 100) / 100).toFixed(2);
+    };
 
     order.itemsPrice = addDecimals(
       order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
-    )
+    );
   }
 
   useEffect(() => {
     if (!userInfo) {
-      history.push('/login')
+      history.push('/login');
     }
 
     const addPayPalScript = async () => {
-      const { data: clientId } = await axios.get('/api/config/paypal')
-      const script = document.createElement('script')
-      script.type = 'text/javascript'
-      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`
-      script.async = true
+      const { data: clientId } = await axios.get('/api/config/paypal');
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
+      script.async = true;
       script.onload = () => {
-        setSdkReady(true)
-      }
-      document.body.appendChild(script)
-    }
+        setSdkReady(true);
+      };
+      document.body.appendChild(script);
+    };
 
-    if (!order || successPay  || order._id !== id) {
-      dispatch({ type: ORDER_PAY_RESET })
-      dispatch(getOrderDetails(id))
+    if (!order || successPay || successDeliver) {
+      //si no existe la orden o si ya ha sido pagada o si ya ha sido entregada
+      dispatch({ type: ORDER_PAY_RESET });
+      dispatch({ type: ORDER_DELIVER_RESET });
+      dispatch(getOrderDetails(id));
     } else if (!order.isPaid) {
       if (!window.paypal) {
-        addPayPalScript()
+        addPayPalScript();
       } else {
-        setSdkReady(true)
+        setSdkReady(true);
       }
     }
-  }, [dispatch,history,order,id,successPay,userInfo])
+  }, [dispatch, history, order, id, successPay, successDeliver, userInfo]);
 
-  const successPaymentHandler = (paymentResult) => { //paymentresult viene de paylpal
-    console.log(paymentResult)
-    dispatch(payOrder(id, paymentResult))
-  }
+  const successPaymentHandler = (paymentResult) => {
+    //paymentresult viene de paylpal
+    console.log(paymentResult);
+    dispatch(payOrder(id, paymentResult));
+  };
 
- console.log({order:order});
+  const deliverHandler = () => {
+    dispatch(deliverOrder(order));
+  };
 
   return loading ? (
     <Loader />
   ) : error ? (
-    <Message variant='danger'>{error}</Message>
+    <Message variant="danger">{error}</Message>
   ) : (
     <>
       <h1>Order {order._id}</h1>
       <Row>
         <Col md={8}>
-          <ListGroup variant='flush'>
+          <ListGroup variant="flush">
             <ListGroup.Item>
               <h2>Shipping</h2>
               <p>
@@ -106,9 +114,11 @@ const OrderScreen = () => {
                 {order.shippingAddress.country}
               </p>
               {order.isDelivered ? (
-                <Message variant='success'>Delivered on {order.deliveredAt}</Message>
+                <Message variant="success">
+                  Delivered on {order.deliveredAt}
+                </Message>
               ) : (
-                <Message variant='danger'>Not Delivered</Message>
+                <Message variant="danger">Not Delivered</Message>
               )}
             </ListGroup.Item>
 
@@ -119,9 +129,9 @@ const OrderScreen = () => {
                 {order.paymentMethod}
               </p>
               {order.isPaid ? (
-                <Message variant='success'>Paid on {order.paidAt}</Message>
+                <Message variant="success">Paid on {order.paidAt}</Message>
               ) : (
-                <Message variant='danger'>Not Paid</Message>
+                <Message variant="danger">Not Paid</Message>
               )}
             </ListGroup.Item>
 
@@ -130,7 +140,7 @@ const OrderScreen = () => {
               {order.orderItems.length === 0 ? (
                 <Message>Order is empty</Message>
               ) : (
-                <ListGroup variant='flush'>
+                <ListGroup variant="flush">
                   {order.orderItems.map((item, index) => (
                     <ListGroup.Item key={index}>
                       <Row>
@@ -160,7 +170,7 @@ const OrderScreen = () => {
         </Col>
         <Col md={4}>
           <Card>
-            <ListGroup variant='flush'>
+            <ListGroup variant="flush">
               <ListGroup.Item>
                 <h2>Order Summary</h2>
               </ListGroup.Item>
@@ -201,12 +211,30 @@ const OrderScreen = () => {
                   )}
                 </ListGroup.Item>
               )}
+
+              {loadingDeliver && <Loader />}
+              {userInfo &&
+                userInfo.isAdmin &&
+                order.isPaid &&
+                !order.isDelivered && (
+                  <ListGroup.Item>
+                    <Button
+                      style={{marginLeft:'5.5rem'}}
+                      type="button"
+                      className="btn btn-block"
+                      onClick={deliverHandler}
+                    >
+                      Mark as Delivered
+                    </Button>
+                  </ListGroup.Item>
+                )}
+
             </ListGroup>
           </Card>
         </Col>
       </Row>
     </>
-  )
-}
+  );
+};
 
 export default OrderScreen;
