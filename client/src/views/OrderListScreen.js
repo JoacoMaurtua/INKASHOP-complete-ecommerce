@@ -72,7 +72,7 @@ const OrderListScreen = () => {
                 </td>
 
                 <td>
-                  <Link to={`/admin/order/${order._id}/edit`}>
+                  <Link to={`/order/${order._id}`}>
                     <Button variant ='light' className="btn-sm">
                       Details
                     </Button>

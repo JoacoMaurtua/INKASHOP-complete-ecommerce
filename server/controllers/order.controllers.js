@@ -54,7 +54,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
   }
 });
 
-//CONTROLLER PARA ACTUALIZAR EL ESTADO DE UNA ORDEN
+//CONTROLLER PARA ACTUALIZAR EL ESTADO DE PAGO DE UNA ORDEN
 const updateOrderToPaid = asyncHandler(async (req, res) => {
   const order = await Order.findById(req.params.id)
 
@@ -93,10 +93,25 @@ const getOrders = asyncHandler(async (req, res) => {
   res.json(orders)
 })
 
+//CONTROLLER PARA ACTUALIZAR EL ESTADO DE ENTREGA DE UNA ORDEN
+const updateOrderToDelivered = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id)
 
-//estoy atascado en este punto
+  if (order) {
+    order.isDelivered = true
+    order.deliveredAt = Date.now()
+   
+    const updatedOrder = await order.save()
 
-module.exports = { addOrderItems, getSingleOrder,updateOrderToPaid, getMyOrders, getOrders };
+    res.json(updatedOrder)
+  } else {
+    res.status(404)
+    throw new Error('Order not found')
+  }
+});
+
+
+module.exports = { addOrderItems, getSingleOrder,updateOrderToPaid, getMyOrders, getOrders, updateOrderToDelivered };
 
 
 

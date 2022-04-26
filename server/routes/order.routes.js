@@ -7,6 +7,7 @@ const {
   updateOrderToPaid,
   getMyOrders,
   getOrders,
+  updateOrderToDelivered,
 } = require('../controllers/order.controllers');
 
 //Rutas:
@@ -18,6 +19,9 @@ router.post('/order', protect, addOrderItems); //crear una orden nueva
 
 router.get('/order/:id', protect, getSingleOrder); //devolver una orden ya creada
 
-router.put('/order/:id/pay', protect, updateOrderToPaid); //actualizar una orden
+router.put('/order/:id/pay', protect, updateOrderToPaid); //actualizar estado de pago de una orden
+
+router.put('/order/:id/deliver', protect,admin, updateOrderToDelivered); //actualizar etsado de entrega de una orden
+
 
 module.exports = router;
