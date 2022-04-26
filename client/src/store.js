@@ -25,6 +25,7 @@ import {
   orderPayReducer,
   orderMyListReducer,
   orderListReducer,
+  orderDeliverReducer
 } from './reducers/orderReducers';
 //Variable que engloba a los reducers y combina sus propiedades en un solo objeto
 
@@ -48,6 +49,7 @@ const reducer = combineReducers({
   orderPay: orderPayReducer,
   orderMyList: orderMyListReducer,
   orderList: orderListReducer,
+  orderDeliver:orderDeliverReducer,
 });
 
 //Almacenar la data del carrito de compras en el local storage
