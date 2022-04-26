@@ -37,17 +37,19 @@ const Productscreen = () => {
   const { userInfo } = userLogin;
 
   const productCreateReview = useSelector((state) => state.productCreateReview);
-  const { successCreateReview, error: errorCreateReview } =
+  const { loading: loadingCreateReview,success:successCreateReview, error: errorCreateReview } =
     productCreateReview;
 
   useEffect(() => {
     if(successCreateReview){
-      
+      alert('Review Submitted!')
+      setRating(0)
+      setComment('')
+      dispatch({type:PRODUCT_CREATE_REVIEW_RESET})
     }
-
     //llama a la funcion creadora de actions
     dispatch(listDetailsProduct(id));
-  }, [dispatch, id]);
+  }, [dispatch, id,successCreateReview]);
 
   const addToCart = () => {
     history.push(`/cart/${id}?qty=${qty}`);
@@ -171,6 +173,12 @@ const Productscreen = () => {
                 ))}
                 <ListGroup.Item>
                   <h2>Write a Customer Review</h2>
+                  {successCreateReview && (
+                    <Message variant='success'>
+                      Review submitted successfully
+                    </Message>
+                  )}
+                  {loadingCreateReview && <Loader />}
                   {errorCreateReview && (
                     <Message variant='danger'>{errorCreateReview}</Message>
                   )}
@@ -201,7 +209,7 @@ const Productscreen = () => {
                           onChange={(e) => setComment(e.target.value)} 
                         ></Form.Control>
                       </Form.Group>
-                      <Button type='submit' variant='primary'>
+                      <Button type='submit' variant='primary' style={{marginTop:'1rem'}}>
                           Submit
                       </Button>
                     </Form>
