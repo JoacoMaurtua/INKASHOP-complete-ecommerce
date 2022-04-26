@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import { Table, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Message from '../components/Message';
@@ -7,6 +7,7 @@ import Loader from '../components/Loader';
 import { listOrders } from '../actions/orderActions';
 
 
+/* FALTA QUR CUANDO UNA ORDEN ESTE PAGADA NO SE MUESTRE UNA X SI NO UN CHECK */
 const OrderListScreen = () => {
   const dispatch = useDispatch();
 
@@ -65,9 +66,10 @@ const OrderListScreen = () => {
                 </td>
 
                 <td>
-                  {order.isDeliveredAt ? (
-                      order.deliveredAt.substring(0,10)) : (
-                    <i className="fa fa-times" style={{ color: 'red' }}></i>
+                  {order.isDelivered ? (
+                    order.deliveredAt.substring(0, 10)
+                  ) : (
+                    <i className='fas fa-times' style={{ color: 'red' }}></i>
                   )}
                 </td>
 

@@ -9,17 +9,19 @@ const PORT = process.env.PORT;
  
 const path = require('path');
 
-/* app.get('/',(req,res)=>{
-  res.send('API is running...')
-}); */
-
+/*  Morgan es un middleware para poder ver en la consola las solicitudes que hagan los usuarios a la DB */
+const morgan = require('morgan');
 
 //Conexion con la base de datos:
 const connectDB = require('./config/mongodb.config');
 connectDB(); //-->Llama a la funcion asincrona
 
+//Middleware para consologuear solicitudes HTTP
+if(process.env.NODE_ENV === 'development'){
+  app.use(morgan('dev')) //
+}//luego cambiar a production
 
-//Midlewares para realizar consulta POST
+//Middlewares para realizar consulta POST
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
