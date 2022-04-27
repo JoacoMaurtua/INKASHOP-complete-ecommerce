@@ -2,7 +2,12 @@ const Product = require('../models/product.models');
 
 const asyncHandler = require('express-async-handler');
 
-const findProduct = (req, res) => {
+const findProduct = async (req, res) => {
+
+  //funcionalidad para la paginacion
+  const pageSize = 9
+  const page = Number(req.query.pageNumber) || 1
+
   const keyword = req.query.keyword ? {
     name:{
       $regex: req.query.keyword,
@@ -10,13 +15,16 @@ const findProduct = (req, res) => {
     }
   }:{} //para obtener query strings
 
-  Product.find({...keyword})
-    .then((product) => res.json(product))
+  const count = await Product.count({...keyword})
+
+  Product.find({...keyword}).limit(pageSize).skip(pageSize * (page-1))
+    .then((product) => res.json({product, page, pages: Math.ceil(count/pageSize)}))
     .catch((error) => {
       res.json({ error: error, message: 'Productos no encontrados' });
       res.sendStatus(404);
     });
 };
+
 
 const findSingleProduct = (req, res) => {
   Product.findOne({ _id: req.params.id })
