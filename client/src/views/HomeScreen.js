@@ -5,31 +5,22 @@ import Product from '../components/Product';
 import { listProducts } from '../actions/productActions'; //traemos las acciones de products
 import Message from '../components/Message';
 import Loader from '../components/Loader';
+import {useParams} from 'react-router-dom';
 
 //import axios from 'axios';
 
 const Homescreen = () => {
-  /*METODO CON USESTATE:
-
-  const [products,setProducts] = useState([]); 
-   useEffect(() =>{
-    const fetchDataProducts = async()=>{
-      const {data} = await axios.get('/api/products') //{data} en lugar de data.data
-      setProducts(data)
-    };
-    fetchDataProducts();
-  },[]) 
   
-  console.log('products: ',products);*/
-
   const dispatch = useDispatch(); //devuelve una referencia al dispatch enviado por la accion al store
+
+  const {keyword} = useParams();
 
   const productList = useSelector((state) => state.productList); //extrae datos del estado del store, en este caso la propiedad productList
   const { loading, error, products } = productList; //extrae las propiedades del objeto que devuelve el productReducer
 
   useEffect(() => { //activa las funcionalidades de las acciones
-    dispatch(listProducts()); //llamo a la funcion creadora de acciones la cual despacha la data del API
-  }, [dispatch]);
+    dispatch(listProducts(keyword)); //llamo a la funcion creadora de acciones la cual despacha la data del API
+  }, [dispatch,keyword]);
 
   return (
     <>

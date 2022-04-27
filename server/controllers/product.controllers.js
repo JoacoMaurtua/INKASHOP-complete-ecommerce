@@ -3,7 +3,14 @@ const Product = require('../models/product.models');
 const asyncHandler = require('express-async-handler');
 
 const findProduct = (req, res) => {
-  Product.find({})
+  const keyword = req.query.keyword ? {
+    name:{
+      $regex: req.query.keyword,
+      $options: 'i' //para que no funcione solo con los nommbres excatos de lo que queremos buscar
+    }
+  }:{} //para obtener query strings
+
+  Product.find({...keyword})
     .then((product) => res.json(product))
     .catch((error) => {
       res.json({ error: error, message: 'Productos no encontrados' });
