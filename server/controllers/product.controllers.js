@@ -2,30 +2,33 @@ const Product = require('../models/product.models');
 
 const asyncHandler = require('express-async-handler');
 
-const findProduct = async (req, res) => {
 
-  //funcionalidad para la paginacion
-  const pageSize = 9
+//DEVOLVER TODA LA LISTA DE PRODUCTOS
+const findProduct = asyncHandler(async (req, res) => {
+  //funcionalidad para la paginacion tomando en cuenta el backend
+  const pageSize = 10
   const page = Number(req.query.pageNumber) || 1
 
-  const keyword = req.query.keyword ? {
-    name:{
-      $regex: req.query.keyword,
-      $options: 'i' //para que no funcione solo con los nommbres excatos de lo que queremos buscar
-    }
-  }:{} //para obtener query strings
+  //funcionalidad para la busqueda
+  const keyword = req.query.keyword
+    ? {
+        name: {
+          $regex: req.query.keyword, //para que no solo busque las palabras exactas, si no tambien por terminos
+          $options: 'i',
+        },
+      }
+    : {}
 
-  const count = await Product.count({...keyword})
+  const count = await Product.countDocuments({ ...keyword })
+  const products = await Product.find({ ...keyword })
+    .limit(pageSize)
+    .skip(pageSize * (page - 1))
 
-  Product.find({...keyword}).limit(pageSize).skip(pageSize * (page-1))
-    .then((product) => res.json({product, page, pages: Math.ceil(count/pageSize)}))
-    .catch((error) => {
-      res.json({ error: error, message: 'Productos no encontrados' });
-      res.sendStatus(404);
-    });
-};
+  res.json({ products, page, pages: Math.ceil(count / pageSize) })
+});
 
 
+//DEVOLVER UN SOLO PRODUCTO
 const findSingleProduct = (req, res) => {
   Product.findOne({ _id: req.params.id })
     .then((product) => res.json(product))
