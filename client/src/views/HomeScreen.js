@@ -15,12 +15,14 @@ const Homescreen = () => {
 
   const {keyword} = useParams();
 
+  const {pageNumber} = useParams() || 1;
+ 
   const productList = useSelector((state) => state.productList); //extrae datos del estado del store, en este caso la propiedad productList
   const { loading, error, products } = productList; //extrae las propiedades del objeto que devuelve el productReducer
 
   useEffect(() => { //activa las funcionalidades de las acciones
-    dispatch(listProducts(keyword)); //llamo a la funcion creadora de acciones la cual despacha la data del API
-  }, [dispatch,keyword]);
+    dispatch(listProducts(keyword,pageNumber)); //llamo a la funcion creadora de acciones la cual despacha la data del API
+  }, [dispatch,keyword,pageNumber]);
 
   return (
     <>

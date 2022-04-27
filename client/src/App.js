@@ -43,7 +43,10 @@ const App = () => {
           <Route path='/admin/product/:id/edit' component={ProductEditScreen}/>
           <Route path='/admin/orderlist' component={OrderListScreen}/>
           <Route path='/search/:keyword' component={HomeScreen}/> 
+          <Route path='/page/:pageNumber' component={HomeScreen}/> 
+          <Route path='/search/:keyword/page/:pageNumber' component={HomeScreen}/>   {/* Por si el resultado de una busqueda da mas productos que los que entran en una pagina */}
           <Route path='/' component={HomeScreen} exact/> 
+
         </Container>
       </main>
       <Footer/>
