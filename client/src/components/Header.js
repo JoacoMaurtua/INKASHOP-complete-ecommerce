@@ -17,7 +17,7 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
+      <Navbar style={{backgroundColor: '#2f4858'}} variant="dark" expand="lg" collapseOnSelect>
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>Street Wear</Navbar.Brand>
@@ -49,7 +49,7 @@ const Header = () => {
                 </LinkContainer>
               )}
               {userInfo && userInfo.isAdmin && (
-                <NavDropdown style={{backgroundColor:'green'}} title='Admin'id="adminMenu">
+                <NavDropdown title='Admin'id="adminMenu">
                   <LinkContainer to="/admin/userlist">
                     <NavDropdown.Item>Users</NavDropdown.Item>
                   </LinkContainer>

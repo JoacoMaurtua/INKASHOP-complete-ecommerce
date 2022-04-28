@@ -7,6 +7,7 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import {useParams} from 'react-router-dom';
 import Paginate from '../components/Paginate';
+import ProductCarousel from '../components/ProductCarousel';
 
 //import axios from 'axios';
 
@@ -27,6 +28,7 @@ const Homescreen = () => {
 
   return (
     <>
+      {!keyword && <ProductCarousel/>}
       <h1 style={{ margin: '2rem 0' }}>Latest Products</h1>
       {loading ? ( //Si la data esta cargando(loading:true en el reducer)
         <Loader />
