@@ -42,8 +42,21 @@ app.get('/api/config/paypal', (req, res) => //PayPal
 //configuracion para volver un directorio estatico
 //const __dirname = path.resolve() //---> ya esta declarada en global namespace
 const __beStatic = path.resolve();
-
 app.use('/uploads', express.static(path.join(__beStatic ,'/uploads'))) 
+
+//preparando el server para modo produccion:
+if(process.env.NODE_ENV === 'production'){ //en .env cambiar esto a production
+  app.use(express.static(path.join(__beStatic, '/client/build/')))
+
+  app.get('*',(req,res)=> {
+    res.sendFile(path.resolve(__beStatic, 'client', 'index.html'))
+  })
+}else{
+  app.get('/',(req,res)=>{
+    res.send('API is runnig...')
+  })
+
+}
     
 
 app.listen(PORT,()=>{
