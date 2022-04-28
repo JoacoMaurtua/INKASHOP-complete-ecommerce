@@ -5,9 +5,10 @@ import Product from '../components/Product';
 import { listProducts } from '../actions/productActions'; //traemos las acciones de products
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-import {useParams} from 'react-router-dom';
+import {useParams,Link} from 'react-router-dom';
 import Paginate from '../components/Paginate';
 import ProductCarousel from '../components/ProductCarousel';
+import Meta from '../components/Meta';
 
 //import axios from 'axios';
 
@@ -28,7 +29,8 @@ const Homescreen = () => {
 
   return (
     <>
-      {!keyword && <ProductCarousel/>}
+      <Meta />
+      {!keyword ? <ProductCarousel/> : <Link to='/' className='btn btn-light'>Go Back</Link>}
       <h1 style={{ margin: '2rem 0' }}>Latest Products</h1>
       {loading ? ( //Si la data esta cargando(loading:true en el reducer)
         <Loader />
