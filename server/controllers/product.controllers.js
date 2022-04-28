@@ -167,6 +167,13 @@ const createReview = asyncHandler(async (req, res) => {
   }
 });
 
+
+//DEVOLVER LOS PRODUCTOS MAS RANKEADOS PARA EL CARRUSEL
+const getTopProducts = asyncHandler(async(req,res) => {
+  const products = await Product.find({}).sort({rating:-1}).limit(3) //-1 indica un orden decendente
+  res.json(products);
+})
+
 module.exports = {
   findProduct,
   findSingleProduct,
@@ -174,4 +181,5 @@ module.exports = {
   createProduct,
   updateProduct,
   createReview,
+  getTopProducts
 };

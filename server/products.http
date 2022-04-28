@@ -48,3 +48,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNjJjYjdjZ
     "rating":"4",
     "comment":"Tardaron un poco en llegar y la caja se daño, pero me encantan!"
 }
+
+###Encontrar los productos mejor ranqueados 
+
+GET http://localhost:8000/api/products/top
