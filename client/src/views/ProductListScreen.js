@@ -13,7 +13,7 @@ import {
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
 
 const ProductListScreen = () => {
-  const { id } = useParams();
+  //const { id } = useParams();
   
   const {pageNumber} = useParams() || 1;
 
@@ -77,7 +77,7 @@ const ProductListScreen = () => {
     <>
       <Row className="align-items-center">
         <Col>
-          <h1>Products</h1>
+          <h1>Productos</h1>
         </Col>
 
         <Col className="text-right">
@@ -86,7 +86,7 @@ const ProductListScreen = () => {
             onClick={createProductHandler}
             style={{ marginLeft: '30rem' }}
           >
-            <i className="fas fa-plus"></i>Create Product
+            <i className="fas fa-plus"></i>Nuevo Producto
           </Button>
         </Col>
       </Row>
@@ -105,10 +105,10 @@ const ProductListScreen = () => {
           <thead>
             <tr>
               <th>ID</th>
-              <th>NAME</th>
-              <th>PRICE</th>
-              <th>CATEGORY</th>
-              <th>BRAND</th>
+              <th>NOMBRE</th>
+              <th>PRECIO</th>
+              <th>CATEGORÍA</th>
+              <th>MARCA</th>
               <th></th>
             </tr>
           </thead>
@@ -118,7 +118,7 @@ const ProductListScreen = () => {
               <tr key={product._id}>
                 <td>{product._id}</td>
                 <td>{product.name}</td>
-                <td>${product.price}</td>
+                <td>S/.{product.price}</td>
                 <td>{product.category}</td>
                 <td>{product.brand}</td>
                 <td>

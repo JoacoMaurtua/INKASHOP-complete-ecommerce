@@ -97,10 +97,10 @@ const ProductEditScreen = () => {
   return (
     <>
       <Link to="/admin/productlist" className="btn btn-light my-3">
-        Go Back
+        Regresar
       </Link>
       <FormContainer>
-        <h1>Edit Product</h1>
+        <h1>Editar Producto</h1>
         {loadingUpdate && <Loader />}
         {errorUpdate && <Message variant="danger">{errorUpdate}</Message>}
         {loading ? (
@@ -110,33 +110,33 @@ const ProductEditScreen = () => {
         ) : (
           <Form onSubmit={submitHandler}>
             <Form.Group controlId="name">
-              <Form.Label>Name</Form.Label>
+              <Form.Label>Nombre</Form.Label>
               <Form.Control
                 style={{ marginBottom: '1rem' }}
                 type="name"
-                placeholder="Enter name"
+                placeholder="Ingresar nombre"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
             <Form.Group controlId="price">
-              <Form.Label>Price</Form.Label>
+              <Form.Label>Precio</Form.Label>
               <Form.Control
                 style={{ marginBottom: '1rem' }}
                 type="number"
-                placeholder="Enter price"
+                placeholder="Ingresar precio"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
             <Form.Group controlId="image">
-              <Form.Label>Image</Form.Label>
+              <Form.Label>Imagen</Form.Label>
               <Form.Control
                 style={{ marginBottom: '1rem' }}
                 type="text"
-                placeholder="Enter image url"
+                placeholder="Ingresar url"
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
               ></Form.Control>
@@ -144,7 +144,7 @@ const ProductEditScreen = () => {
                 style={{ marginBottom: '1rem' }}
                 type='file'
                 id='image-file'
-                label='Choose File'
+                label='Subir un archivo'
                 custom
                 onChange={uploadFileHandler}
               ></Form.Control>
@@ -153,51 +153,51 @@ const ProductEditScreen = () => {
             </Form.Group>
 
             <Form.Group controlId="brand">
-              <Form.Label>Brand</Form.Label>
+              <Form.Label>Marca</Form.Label>
               <Form.Control
                 style={{ marginBottom: '1rem' }}
                 type="text"
-                placeholder="Enter brand"
+                placeholder="Ingresar una marca"
                 value={brand}
                 onChange={(e) => setBrand(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
             <Form.Group controlId="countInStock">
-              <Form.Label>Count In Stock</Form.Label>
+              <Form.Label>Cantidad en Stock</Form.Label>
               <Form.Control
                 style={{ marginBottom: '1rem' }}
                 type="number"
-                placeholder="Enter countInStock"
+                placeholder="Ingresar stock"
                 value={countInStock}
                 onChange={(e) => setCountInStock(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
             <Form.Group controlId="category">
-              <Form.Label>Category</Form.Label>
+              <Form.Label>Categoría</Form.Label>
               <Form.Control
                 style={{ marginBottom: '1rem' }}
                 type="text"
-                placeholder="Enter category"
+                placeholder="Ingrese una categoría"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
             <Form.Group controlId="description">
-              <Form.Label>Description</Form.Label>
+              <Form.Label>Descripción</Form.Label>
               <Form.Control
                 style={{ marginBottom: '1rem' }}
                 type="text"
-                placeholder="Enter description"
+                placeholder="Ingrese una descripción"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></Form.Control>
             </Form.Group>
 
             <Button type="submit" variant="primary">
-              Update
+              Continuar
             </Button>
           </Form>
         )}

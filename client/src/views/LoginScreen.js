@@ -59,12 +59,12 @@ const Loginscreen = () => {
 
   return (
     <FormContainer>
-      <h1>Sign In</h1>
+      <h1>Inicia Sesión</h1>
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="email">
-          <Form.Label>Email Address: </Form.Label>
+          <Form.Label>Correo Electrónico: </Form.Label>
           <Form.Control
             style={{marginBottom:'1rem'}}
             type="email"
@@ -76,7 +76,7 @@ const Loginscreen = () => {
         </Form.Group>
 
         <Form.Group controlId="password">
-          <Form.Label>Password: </Form.Label>
+          <Form.Label>Contraseña: </Form.Label>
           <Form.Control
             style={{marginBottom:'1rem'}}
             type="password"
@@ -88,15 +88,15 @@ const Loginscreen = () => {
         </Form.Group>
 
         <Button type="submit" variant="primary">
-          Sign In
+          Iniciar Sesión
         </Button>
       </Form>
 
       <Row className="py-3">
         <Col>
-          New Customer?{' '}
+          ¿Cliente Nuevo?{' '}
           <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
-            Register
+            Regístrate
           </Link>
         </Col>
       </Row>

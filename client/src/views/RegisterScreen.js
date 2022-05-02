@@ -59,13 +59,13 @@ const RegisterScreen = () => {
 
   return (
     <FormContainer>
-      <h1>Sign Up</h1>
+      <h1>Registrarse</h1>
       {message && <Message variant='danger'>{message}</Message>}
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
       <Form.Group controlId="name">
-          <Form.Label>Name: </Form.Label>
+          <Form.Label>Nombre: </Form.Label>
           <Form.Control
             style={{marginBottom:'1rem'}}
             type="name"
@@ -77,7 +77,7 @@ const RegisterScreen = () => {
         </Form.Group>
 
         <Form.Group controlId="email">
-          <Form.Label>Email Address: </Form.Label>
+          <Form.Label>Correo Electrónico: </Form.Label>
           <Form.Control
             style={{marginBottom:'1rem'}}
             type="email"
@@ -89,7 +89,7 @@ const RegisterScreen = () => {
         </Form.Group>
 
         <Form.Group controlId="password">
-          <Form.Label>Password: </Form.Label>
+          <Form.Label>Contraseña: </Form.Label>
           <Form.Control
             style={{marginBottom:'1rem'}}
             type="password"
@@ -101,7 +101,7 @@ const RegisterScreen = () => {
         </Form.Group>
 
         <Form.Group controlId="confirmPassword">
-          <Form.Label>Confirm Password: </Form.Label>
+          <Form.Label>Confirmar Contraseña: </Form.Label>
           <Form.Control
             style={{marginBottom:'1rem'}}
             type="password"
@@ -113,15 +113,15 @@ const RegisterScreen = () => {
         </Form.Group>
 
         <Button type="submit" variant="primary">
-          Register
+          Registrarse
         </Button>
       </Form>
 
       <Row className="py-3">
         <Col>
-          Have an Account?{' '}
+          ¿Ya tienes una cuenta?{' '}
           <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
-            Login
+            Iniciar Sesión
           </Link>
         </Col>
       </Row>

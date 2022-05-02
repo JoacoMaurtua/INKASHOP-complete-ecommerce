@@ -30,8 +30,8 @@ const Homescreen = () => {
   return (
     <>
       <Meta />
-      {!keyword ? <ProductCarousel/> : <Link to='/' className='btn btn-light'>Go Back</Link>}
-      <h1 style={{ margin: '2rem 0' }}>Latest Products</h1>
+      {!keyword ? <ProductCarousel/> : <Link to='/' className='btn btn-light'>Regresar</Link>}
+      <h1 style={{ margin: '2rem 0' }}>Últimos Productos</h1>
       {loading ? ( //Si la data esta cargando(loading:true en el reducer)
         <Loader />
       ) : error ? (

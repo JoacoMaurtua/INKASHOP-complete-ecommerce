@@ -46,14 +46,14 @@ const Shippingscreen = () => {
   return (
     <FormContainer>
       <CheckoutSteps step1 step2 />
-      <h1>Shipping</h1>
+      <h1>Envío</h1>
       <Form onSubmit={submitHandler}>
       <Form.Group controlId="address">
-          <Form.Label>Address: </Form.Label>
+          <Form.Label>Dirección: </Form.Label>
           <Form.Control
             style={{marginBottom:'1rem'}}
             type="text"
-            placeholder="Enter your address"
+            placeholder="Ingrese su dirección"
             name='address'
             value={address}
             required
@@ -62,11 +62,11 @@ const Shippingscreen = () => {
         </Form.Group>
 
         <Form.Group controlId="city">
-          <Form.Label>City: </Form.Label>
+          <Form.Label>Ciudad: </Form.Label>
           <Form.Control
             style={{marginBottom:'1rem'}}
             type="text"
-            placeholder="Enter your city"
+            placeholder="Ingrese su ciudad"
             name='city'
             value={city}
             required
@@ -75,11 +75,11 @@ const Shippingscreen = () => {
         </Form.Group>
 
         <Form.Group controlId="postalCode">
-          <Form.Label>Postal Code: </Form.Label>
+          <Form.Label>Código Postal: </Form.Label>
           <Form.Control
             style={{marginBottom:'1rem'}}
             type="text"
-            placeholder="Enter your Postal Code"
+            placeholder="Ingrese su cógigo postal"
             name='postalCode'
             value={postalCode}
             required
@@ -88,11 +88,11 @@ const Shippingscreen = () => {
         </Form.Group>
         
         <Form.Group controlId="country">
-          <Form.Label>Country: </Form.Label>
+          <Form.Label>Ciudad: </Form.Label>
           <Form.Control
             style={{marginBottom:'1rem'}}
             type="text"
-            placeholder="Enter your Country"
+            placeholder="Ingrese su país"
             name='country'
             value={country}
             required
@@ -101,7 +101,7 @@ const Shippingscreen = () => {
         </Form.Group>
 
         <Button type="submit" variant="primary">
-            Continue
+            Continuar
         </Button>
       </Form>
     </FormContainer>

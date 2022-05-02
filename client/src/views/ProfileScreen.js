@@ -81,18 +81,18 @@ const ProfileScreen = () => {
       <Col md={3}>
         {' '}
         {/* datos del user */}
-        <h2> User Profile </h2>
+        <h2> Perfil de Usuario</h2>
         {message && <Message variant="danger">{message}</Message>}
         {error && <Message variant="danger">{error}</Message>}
-        {success && <Message variant="success">Profile Updated!</Message>}
+        {success && <Message variant="success">¡Perfil Actualizado!</Message>}
         {loading && <Loader />}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="name">
-            <Form.Label>Name: </Form.Label>
+            <Form.Label>Nombre: </Form.Label>
             <Form.Control
               style={{ marginBottom: '1rem' }}
               type="name"
-              placeholder="Enter your name"
+              placeholder="Ingrese un nuevo nombre"
               name="name"
               value={name}
               onChange={onChangeHandler}
@@ -100,11 +100,11 @@ const ProfileScreen = () => {
           </Form.Group>
 
           <Form.Group controlId="email">
-            <Form.Label>Email Address: </Form.Label>
+            <Form.Label>Email: </Form.Label>
             <Form.Control
               style={{ marginBottom: '1rem' }}
               type="email"
-              placeholder="Enter your email"
+              placeholder="Ingrese un nuevo correo"
               name="email"
               value={email}
               onChange={onChangeHandler}
@@ -112,11 +112,11 @@ const ProfileScreen = () => {
           </Form.Group>
 
           <Form.Group controlId="password">
-            <Form.Label>Password: </Form.Label>
+            <Form.Label>Contraseña: </Form.Label>
             <Form.Control
               style={{ marginBottom: '1rem' }}
               type="password"
-              placeholder="Enter your password"
+              placeholder="Ingrese una nueva contraseña"
               name="password"
               value={password}
               onChange={onChangeHandler}
@@ -124,11 +124,11 @@ const ProfileScreen = () => {
           </Form.Group>
 
           <Form.Group controlId="confirmPassword">
-            <Form.Label>Confirm Password: </Form.Label>
+            <Form.Label>Confirmar Contraseña: </Form.Label>
             <Form.Control
               style={{ marginBottom: '1rem' }}
               type="password"
-              placeholder="Confirm your Password please"
+              placeholder="Confirme su nueva contraseña"
               name="confirmPassword"
               value={confirmPassword}
               onChange={onChangeHandler}
@@ -136,14 +136,14 @@ const ProfileScreen = () => {
           </Form.Group>
 
           <Button type="submit" variant="primary">
-            Update
+            Actualizar
           </Button>
         </Form>
       </Col>
       <Col md={9}>
         {' '}
         {/* ordenes del usuario */}
-        <h2>My Orders</h2>
+        <h2>Mis Ordenes</h2>
         {loadingOrders ? (
           <Loader />
         ) : errorOrders ? (
@@ -153,10 +153,10 @@ const ProfileScreen = () => {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>DATE</th>
+                <th>FECHA</th>
                 <th>TOTAL</th>
-                <th>PAID</th>
-                <th>DELIVERED</th>
+                <th>PAGADO</th>
+                <th>ENTREGADO</th>
               </tr>
             </thead>
             <tbody>
@@ -182,7 +182,7 @@ const ProfileScreen = () => {
                   </td>
                   <td>
                     <Link to={`/order/${orders._id}`}>
-                      <Button variant="light">Details</Button>
+                      <Button variant="light">Detalles</Button>
                     </Link>
                   </td>
                 </tr>
